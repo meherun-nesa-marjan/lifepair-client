@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import  { useContext, useState} from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
@@ -38,33 +38,11 @@ const EditBiodata = () => {
     const handleSave = (e) => {
         e.preventDefault();
 
-        axios
-            .post("/saveBiodata", biodata)
+        axios.post("/allBiodatas", biodata)
             .then((response) => {
+                console.log(biodata)
                 console.log(response.data);
                 Swal.fire("Success", "Biodata saved successfully!", "success");
-
-                setBiodata({
-                    Name: "",
-                    FathersName: "",
-                    MothersName: "",
-                    ProfileImage: "",
-                    ContactEmail: user.email || "",
-                    MobileNumber: "",
-                    Age: "",
-                    BiodataType: "",
-                    DateOfBirth: "",
-                    Height: "",
-                    Race: "",
-                    Occupation: "",
-                    Weight: "",
-                    PresentDivision: "",
-                    PermanentDivision: "",
-                    ExpectedPartnerAge: "",
-                    ExpectedPartnerHeightt: "",
-                    ExpectedPartnerWeight: "",
-
-                });
             })
             .catch((error) => {
                 console.error(error);
@@ -72,7 +50,7 @@ const EditBiodata = () => {
             });
     };
     const handlePublish = () => {
-        // Implement the publish logic here
+       
         Swal.fire("Info", "Publish feature not implemented yet.", "info");
     };
 
@@ -142,7 +120,7 @@ const EditBiodata = () => {
                     <input
                         type="email"
                         name="ContactEmail"
-                        value={biodata.ContactEmail}
+                        value={user.email}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         readOnly
                     />
