@@ -1,11 +1,62 @@
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
-import  bgImg from '../assets/login.jpg'
+import { Link, useNavigate } from "react-router-dom";
+import bgImg from '../assets/login.jpg'
+import Swal from "sweetalert2";
+import { useContext, useState } from "react";
+import { AuthContext } from "../Providers/AuthProvider";
 const Register = () => {
+    const navigate = useNavigate();
+    const { createUser, signInWithGoogle, UpdateUserProfile } = useContext(AuthContext);
+    const [error, setError] = useState("");
+    const handleRegistration = (e) => {
+        e.preventDefault();
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        if (!passwordRegex.test(password)) {
+            setError(
+                "Password must contain at least 6 characters, an uppercase letter, and a lowercase letter."
+            );
+            return;
+        }
+        setError("");
+
+        createUser(email, password)
+            .then((result) => {
+                const user = result.user;
+                UpdateUserProfile({ displayName: name })
+                    .then(() => {
+                        Swal.fire("Registration successfully");
+                        navigate("/");
+                    })
+                    .catch((updateError) => {
+                        setError("Error updating profile: " + updateError.message);
+                        Swal.fire("Error updating profile.");
+                    });
+            })
+            .catch((authError) => {
+                setError("Registration failed: " + authError.message);
+                Swal.fire("Registration failed: " + authError.message);
+            });
+    };
+
+    const handleRegistrationWithGoogle = () => {
+        signInWithGoogle()
+            .then((result) => {
+                console.log("User registered with Google:", result.user);
+                Swal.fire("Google registration successful!");
+                navigate("/");
+            })
+            .catch((error) => {
+                setError("Google registration failed: " + error.message);
+                Swal.fire("Google registration failed: " + error.message);
+            });
+    };
     return (
         <div className=" bg-cover bg-center"
             style={{ backgroundImage: `url(${bgImg})` }}>
-            <section className=" dark:bg-gray-900 py-10">
+            <section className=" dark:bg-gray-900 py-3">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
                     <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -13,10 +64,11 @@ const Register = () => {
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                                 Create an account
                             </h1>
-                            <form className="space-y-4 md:space-y-6" action="#">
-                               
+                            <form onSubmit={handleRegistration} className="space-y-4 md:space-y-6" action="#">
+
                                 <button
                                     type="submit"
+                                    onClick={handleRegistrationWithGoogle}
                                     className="flex items-center justify-center w-full text-black border-2 bg-primary-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                                 >
                                     <FcGoogle size={24} className="mr-2" />

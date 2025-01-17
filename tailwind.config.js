@@ -7,7 +7,14 @@ export default {
     "./node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        
+        'details': "url('./assets/details.jpg')",
+
+        
+      }
+    },
   },
   plugins: [flowbite],
 }

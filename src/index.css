@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slider-track {
+
+    position: relative; /* So that the thumb is positioned relative to it */
+}
+.slider-thumb {
+   
+    position: absolute;
+    transform: translateX(-50%); /* Center the thumb horizontally */
+}
