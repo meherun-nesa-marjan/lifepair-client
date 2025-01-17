@@ -7,57 +7,63 @@ import Swal from 'sweetalert2';
 const EditBiodata = () => {
     const { user } = useContext(AuthContext);
     const [biodata, setBiodata] = useState({
-        name: "",
-        fathersName: "",
-        mothersName: "",
-        profileImage: "",
-        contactEmail: user.email || "",
-        mobileNumber: "",
-        age: "",
-        biodataType: "",
-        dateOfBirth: "",
-        height: "",
-        race: "",
-        occupation: "",
-        weight: "",
-        expectedPartnerAge: "",
-        expectedPartnerHeight: "",
-        expectedPartnerWeight: "",
+
+        Name: "",
+        FathersName: "",
+        MothersName: "",
+        ProfileImage: "",
+        ContactEmail: user.email || "",
+        MobileNumber: "",
+        Age: "",
+        BiodataType: "",
+        DateOfBirth: "",
+        Height: "",
+        Race: "",
+        Occupation: "",
+        Weight: "",
+        PresentDivision: "",
+        PermanentDivision: "",
+        ExpectedPartnerAge: "",
+        ExpectedPartnerHeightt: "",
+        ExpectedPartnerWeight: "",
     });
     const handleChange = (e) => {
         const { name, value } = e.target;
         setBiodata({ ...biodata, [name]: value });
     };
-        
-   
-    
+
+
+
 
     const handleSave = (e) => {
         e.preventDefault();
-    
+
         axios
             .post("/saveBiodata", biodata)
             .then((response) => {
                 console.log(response.data);
                 Swal.fire("Success", "Biodata saved successfully!", "success");
-               
+
                 setBiodata({
-                    name: "",
-                    fathersName: "",
-                    mothersName: "",
-                    profileImage: "",
-                    contactEmail: user.email || "",
-                    mobileNumber: "",
-                    age: "",
-                    biodataType: "",
-                    dateOfBirth: "",
-                    height: "",
-                    race: "",
-                    occupation: "",
-                    weight: "",
-                    expectedPartnerAge: "",
-                    expectedPartnerHeight: "",
-                    expectedPartnerWeight: "",
+                    Name: "",
+                    FathersName: "",
+                    MothersName: "",
+                    ProfileImage: "",
+                    ContactEmail: user.email || "",
+                    MobileNumber: "",
+                    Age: "",
+                    BiodataType: "",
+                    DateOfBirth: "",
+                    Height: "",
+                    Race: "",
+                    Occupation: "",
+                    Weight: "",
+                    PresentDivision: "",
+                    PermanentDivision: "",
+                    ExpectedPartnerAge: "",
+                    ExpectedPartnerHeightt: "",
+                    ExpectedPartnerWeight: "",
+
                 });
             })
             .catch((error) => {
@@ -82,8 +88,8 @@ const EditBiodata = () => {
                     <label className="w-2/12 text-sm font-bold text-gray-700">Your Name:</label>
                     <input
                         type="text"
-                        name="name"
-                        value={biodata.name}
+                        name="Name"
+                        value={biodata.Name}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
@@ -95,8 +101,8 @@ const EditBiodata = () => {
                     <label className="w-2/12 text-sm font-bold text-gray-700">Father's Name:</label>
                     <input
                         type="text"
-                        name="fathersName"
-                        value={biodata.fathersName}
+                        name="FathersName"
+                        value={biodata.FathersName}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
@@ -108,8 +114,8 @@ const EditBiodata = () => {
                     <label className="w-2/12 text-sm font-bold text-gray-700">Mother's Name:</label>
                     <input
                         type="text"
-                        name="mothersName"
-                        value={biodata.mothersName}
+                        name="MothersName"
+                        value={biodata. MothersName}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
@@ -121,8 +127,9 @@ const EditBiodata = () => {
                     <label className="w-2/12 text-sm font-bold text-gray-700">Profile Image:</label>
                     <input
                         type="url"
-                        name="profileImage"
-                        value={biodata.profileImage}
+                        name="ProfileImage"
+
+                        value={biodata.ProfileImage}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
@@ -134,8 +141,8 @@ const EditBiodata = () => {
                     <label className="w-2/12 text-sm font-bold text-gray-700">Contact Email:</label>
                     <input
                         type="email"
-                        name="contactEmail"
-                        value={biodata.contactEmail}
+                        name="ContactEmail"
+                        value={biodata.ContactEmail}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         readOnly
                     />
@@ -146,8 +153,8 @@ const EditBiodata = () => {
                     <label className="w-2/12 text-sm font-bold text-gray-700">Mobile Number:</label>
                     <input
                         type="text"
-                        name="mobileNumber"
-                        value={biodata.mobileNumber}
+                        name="MobileNumber"
+                        value={biodata.MobileNumber}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
@@ -171,8 +178,8 @@ const EditBiodata = () => {
                 <div className="mb-4 flex items-center">
                     <label className="w-2/12 text-sm font-bold text-gray-700">Biodata Type:</label>
                     <select
-                        name="biodataType"
-                        value={biodata.biodataType}
+                        name="BiodataType"
+                        value={biodata.BiodataType}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
@@ -188,8 +195,8 @@ const EditBiodata = () => {
                     <label className="w-2/12 text-sm font-bold text-gray-700">Date of Birth:</label>
                     <input
                         type="date"
-                        name="dateOfBirth"
-                        value={biodata.dateOfBirth}
+                        name="DateOfBirth"
+                        value={biodata.DateOfBirth}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                     />
@@ -199,8 +206,8 @@ const EditBiodata = () => {
                 <div className="mb-4 flex items-center">
                     <label className="w-2/12 text-sm font-bold text-gray-700">Height:</label>
                     <select
-                        name="height"
-                        value={biodata.height}
+                        name="Height"
+                        value={biodata.Height}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
@@ -218,8 +225,8 @@ const EditBiodata = () => {
                         Race :
                     </label>
                     <select
-                        name="race"
-                        value={biodata.race}
+                        name="Race"
+                        value={biodata.Race}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
@@ -242,8 +249,8 @@ const EditBiodata = () => {
                         Occupation :
                     </label>
                     <select
-                        name="occupation"
-                        value={biodata.occupation}
+                        name="Occupation"
+                        value={biodata.Occupation}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
@@ -260,6 +267,46 @@ const EditBiodata = () => {
                     </select>
 
                 </div>
+                <div className="mt-4">
+                    <label className="block">Permanent Division</label>
+                    <select
+                        type="text"
+                        name="PermanentDivision"
+                        value={biodata.PermanentDivision}
+                        onChange={handleChange}
+                       
+                        className="w-full p-2 border rounded"
+                    >
+                        <option value="">Select Division</option>
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Chattagram">Chattagram</option>
+                        <option value="Rangpur">Rangpur</option>
+                        <option value="Barisal">Barisal</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Mymensingh">Mymensingh</option>
+                        <option value="Sylhet">Sylhet</option>
+                    </select>
+                </div>
+                <div className="mt-4">
+                    <label className="block">Present Division</label>
+                    <select
+                       type="text"
+                       name="PresentDivision"
+                       value={biodata.PresentDivision}
+                       onChange={handleChange}
+                        
+                        className="w-full p-2 border rounded"
+                    >
+                        <option value="">Select Division</option>
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Chattagram">Chattagram</option>
+                        <option value="Rangpur">Rangpur</option>
+                        <option value="Barisal">Barisal</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Mymensingh">Mymensingh</option>
+                        <option value="Sylhet">Sylhet</option>
+                    </select>
+                </div>
 
                 <div className="mb-4 flex items-center">
                     <label
@@ -269,8 +316,8 @@ const EditBiodata = () => {
                     </label>
                     <select
                         type="number"
-                        name="weight"
-                        value={biodata.weight}
+                        name="Weight"
+                        value={biodata.Weight}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
@@ -295,8 +342,8 @@ const EditBiodata = () => {
                     </label>
                     <input
                         type="number"
-                        name="expectedPartnerAge"
-                        value={biodata.expectedPartnerAge}
+                        name="ExpectedPartnerAge"
+                        value={biodata.ExpectedPartnerAge}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
 
@@ -310,8 +357,8 @@ const EditBiodata = () => {
 
                     </label>
                     <select
-                        name="expectedPartnerHeight"
-                        value={biodata.expectedPartnerHeight}
+                        name="ExpectedPartnerHeight"
+                        value={biodata.ExpectedPartnerHeight}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
@@ -332,8 +379,8 @@ const EditBiodata = () => {
                     </label>
                     <select
                         type="number"
-                        name="expectedPartnerWeight"
-                        value={biodata.expectedPartnerWeight}
+                        name="ExpectedPartnerWeight"
+                        value={biodata.ExpectedPartnerWeight}
                         onChange={handleChange}
                         className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
