@@ -22,7 +22,7 @@ const UsersDashboard = () => {
 
            
 
-            <aside class="bg-red-800 text-white w-72 h-screen">
+            <aside class="bg-red-800 text-white w-72">
                 <div class="h-full px-3 py-4 overflow-y-auto dark:bg-gray-800">
                 <div className="flex items-center space-x-4 p-4">
                         <img
