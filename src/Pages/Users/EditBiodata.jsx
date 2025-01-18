@@ -16,6 +16,7 @@ const EditBiodata = () => {
         console.log("Form is being submitted...");
         
             const biodata = {
+                BiodataId : "",
                  Name : e.target.Name.value,
                 FathersName : e.target.FathersName.value,
                 MothersName : e.target.MothersName.value,
@@ -38,7 +39,7 @@ const EditBiodata = () => {
             console.log(biodata)
 
             axios
-        .patch("http://localhost:5000/allBiodatas", biodata)
+        .patch("http://localhost:5000/addBiodatas", biodata)
         .then((response) => {
           console.log("Saved biodata:", response.data);
           Swal.fire("Success", "Biodata saved successfully!", "success");
