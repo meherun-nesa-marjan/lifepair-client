@@ -1,16 +1,15 @@
-import React, { useContext } from 'react';
+import  { useContext } from 'react';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { IoIosHome } from 'react-icons/io';
 import { MdEditDocument, MdFavorite, MdViewCarousel } from 'react-icons/md';
 import { RiContactsFill } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
-import Swal from 'sweetalert2';
+
 
 const UsersDashboard = () => {
     const { user,signOutUser } = useContext(AuthContext);
     const navigate = useNavigate();
-    console.log(user)
     const handleSignOut = async () => {
         try {
             
@@ -29,8 +28,8 @@ const UsersDashboard = () => {
 
            
 
-            <aside class="bg-red-800 text-white w-72">
-                <div class="h-full px-3 py-4 overflow-y-auto dark:bg-gray-800">
+            <aside className="bg-red-800 text-white w-72">
+                <div className="h-full px-3 py-4 overflow-y-auto dark:bg-gray-800">
                 <div className="flex items-center space-x-4 p-4">
                         <img
                             src={user?.photoURL || '/default-avatar.png'}
@@ -39,43 +38,43 @@ const UsersDashboard = () => {
                         />
                         <span className=" dark:text-white">{user?.displayName || 'User Name'}</span>
                     </div>
-                    <ul class="space-y-2 font-medium">
+                    <ul className="space-y-2 font-medium">
                         <li>
-                            <Link to={''} class="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <Link to={''} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                                 <IoIosHome />
-                                <span class="ms-3">Home</span>
+                                <span className="ms-3">Home</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to={'/Dashboard/Edit'} class="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <Link to={'/Dashboard/Edit'} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                             <MdEditDocument />
-                                <span class="flex-1 ms-3 whitespace-nowrap">Edit Biodata</span>
+                                <span className="flex-1 ms-3 whitespace-nowrap">Edit Biodata</span>
                                 
                             </Link>
                         </li>
                         <li>
-                            <Link to={'/Dashboard/MyBiodata'} class="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <Link to={`/Dashboard/myBiodata/${user?.email}`} className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                             <MdViewCarousel />
-                                <span class="flex-1 ms-3 whitespace-nowrap">View Biodata</span>
+                                <span className="flex-1 ms-3 whitespace-nowrap">View Biodata</span>
                                
                             </Link>
                         </li>
                         <li>
-                            <Link to={''} class="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <Link to={''} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                             <RiContactsFill />
-                                <span class="flex-1 ms-3 whitespace-nowrap">My Contact Request</span>
+                                <span className="flex-1 ms-3 whitespace-nowrap">My Contact Request</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to={''} class="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <Link to={''} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                             <MdFavorite />
-                                <span class="flex-1 ms-3 whitespace-nowrap">Favourites Biodata.</span>
+                                <span className="flex-1 ms-3 whitespace-nowrap">Favourites Biodata.</span>
                             </Link>
                         </li>
                         <li>
-                            <button onClick={handleSignOut} class="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <button onClick={handleSignOut} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                             <FaSignOutAlt />
-                                <span class="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
+                                <span className="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
                             </button>
                             
                         </li>

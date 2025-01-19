@@ -1,31 +1,33 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
+import {  useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const MyBiodata = () => {
-    const [myBiodata, setMyBiodata] = useState([]); 
-  const { user } = useContext(AuthContext);
-  const email = user?.email;
+    const [myBiodata, setMyBiodata] = useState({}); 
+    const { email } = useParams();
+
 
   useEffect(() => {
-    if (email) {
+  
       axios
-        .get(`http://localhost:5000/myBiodata?email=${email}`)
+        .get(`http://localhost:5000/myBiodata/${email}`)
         .then((response) => {
           setMyBiodata(response.data);
         })
         .catch((error) => {
           console.error("Error fetching biodata:", error);
         });
-    }
   }, [email]);
+
+
+
 
  
 
  
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <div className="max-w-4xl mx-auto my-8 p-6 bg-white shadow-lg rounded-lg">
       <div className="flex items-center space-x-4">
         <img
           src={myBiodata.ProfileImage}
@@ -76,10 +78,10 @@ const MyBiodata = () => {
             <strong>Mothers Name:</strong> {myBiodata.MothersName}
           </p>
           <p>
-            <strong>Permanent Division:</strong> {myBiodata.PermanentDivisionName}
+            <strong>Permanent Division:</strong> {myBiodata.PermanentDivision}
           </p>
           <p>
-            <strong>Present Division:</strong> {myBiodata.PresentDivisionName}
+            <strong>Present Division:</strong> {myBiodata.PresentDivision}
           </p>
         </div>
       </div>

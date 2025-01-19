@@ -7,9 +7,7 @@ import About from '../Pages/About';
 import Biodatas from '../Pages/Biodatas';
 import PrivateRoutes from './PrivateRoutes';
 import BiodataDetails from '../Pages/BiodataDetails';
-import Dashboard from '../Pages/AdminDashboard';
 import DashboardLayout from '../Layouts/DashboardLayout';
-import UsersDashboard from '../Pages/Users/UsersDashboard';
 import EditBiodata from '../Pages/Users/EditBiodata';
 import MyBiodata from '../Pages/Users/MyBiodata';
 
@@ -65,7 +63,7 @@ const Routes = createBrowserRouter([
 
       },
       {
-        path: 'MyBiodata',
+        path: 'myBiodata/:email',
         element: <PrivateRoutes><MyBiodata /></PrivateRoutes>
 
       },

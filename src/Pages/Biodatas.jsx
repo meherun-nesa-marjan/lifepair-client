@@ -16,8 +16,8 @@ const Biodatas = () => {
     const { count } = useLoaderData();
 
     const numberOfPages = Math.ceil(count / itemsPerPage);
-   // const pages = [...Array(numberOfPages).keys()];
-   const pages = [];
+    const pages = [...Array(numberOfPages).keys()];
+   //const pages = [];
     console.log(pages)
     useEffect(() => {
         setLoading(true);
