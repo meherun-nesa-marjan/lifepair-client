@@ -1,26 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { FcApproval } from "react-icons/fc";
 import { HiUsers } from "react-icons/hi";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ManageUsers = () => {
-  // Fetching all users with React Query
-  const { data: users = [], refetch } = useQuery({
+  const axiosSecure = useAxiosSecure();
+  const { data: users = [], isLoading, isError, error, refetch} = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/allUsers");
+      const res = await axiosSecure.get("/allUsers");
       return res.data;
     },
   });
 
-  // Function to handle making a user an admin
   const handleMakeAdmin = (user) => {
-    axios
-      .patch(`http://localhost:5000/makeAdmin/${user._id}`)
+    axiosSecure
+      .patch(`/makeAdmin/${user._id}`)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
-          refetch(); // Refresh the user list
+          refetch(); 
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -31,7 +30,7 @@ const ManageUsers = () => {
         }
       })
       .catch((error) => {
-        console.error("Error making admin:", error);
+        console.error("Error making admin:", error.response || error.message);
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -40,14 +39,13 @@ const ManageUsers = () => {
       });
   };
 
-  // Function to handle making a user premium (placeholder for now)
-  const handleMakePremium = (user) => {
-    Swal.fire({
-      icon: "info",
-      title: "Coming Soon",
-      text: `Premium feature for ${user.name} is not implemented yet!`,
-    });
-  };
+  if (isLoading) return <p>Loading users...</p>;
+  if (isError) {
+    console.error("Error fetching users:", error);
+    return <p>Error fetching users: {error.message}</p>;
+  }
+
+  if (users.length === 0) return <p>No users found.</p>;
 
   return (
     <div className="p-6">
@@ -71,9 +69,11 @@ const ManageUsers = () => {
                 </td>
                 <td className="border border-gray-300 px-4 py-2">{user.name}</td>
                 <td className="border border-gray-300 px-4 py-2">{user.email}</td>
-                <td className="border border-gray-300 px-4 py-2 ">
+                <td className="border border-gray-300 px-4 py-2">
                   {user.role === "admin" ? (
-                    <span className="text-green-600 px-3 flex font-bold items-center"><HiUsers className="mr-1" /> Admin</span>
+                    <span className="text-green-600 px-3 flex font-bold items-center">
+                      <HiUsers className="mr-1" /> Admin
+                    </span>
                   ) : (
                     <button
                       onClick={() => handleMakeAdmin(user)}
@@ -83,17 +83,12 @@ const ManageUsers = () => {
                       Make Admin
                     </button>
                   )}
-                 
                 </td>
-                <td className="border border-gray-300 px-4 py-2 ">
-                    <button
-                    className="bg-blue-700 flex items-center text-white px-3 py-1 rounded hover:bg-blue-500"
-                  >
+                <td className="border border-gray-300 px-4 py-2">
+                  <button className="bg-blue-700 flex items-center text-white px-3 py-1 rounded hover:bg-blue-500">
                     <FcApproval className="mr-1" />
                     Make Premium
                   </button>
-                
-                 
                 </td>
               </tr>
             ))}

@@ -13,9 +13,7 @@ const Login = () => {
     const [error, setError] = useState("");
 
     const handleLogin = (e) => {
-
         e.preventDefault();
-
         setError("");
         const email = e.target.email.value;
         const password = e.target.password.value;
@@ -32,28 +30,86 @@ const Login = () => {
             });
     };
 
+
     const handleLoginWithGoogle = () => {
         signInWithGoogle()
             .then((result) => {
                 const userData = {
-                    name: result.user?.displayName, email: result.user?.email
-                }
+                    name: result.user?.displayName,
+                    email: result.user?.email,
+                };
+    
                 axios.post('http://localhost:5000/addUsers', userData)
                     .then(res => {
                         if (res.data.insertedId) {
-                            console.log("User registered with Google:", result.user);
-                            Swal.fire("Login successful with Google!");
-                            navigate(from, { replace: true });
-
+                            
+                            Swal.fire({
+                                icon: "success",
+                                title: "Login successful with Google!",
+                            }).then(() => {
+                                navigate(from, { replace: true });
+                            });
+                        } else if (res.data.message === 'User already exists') {
+                           
+                           
+                            Swal.fire({
+                                icon: "info",
+                                title: "Welcome back!",
+                                text: "You are already logged in. Redirecting to the home page.",
+                            }).then(() => {
+                                navigate(from, { replace: true });
+                            });
+                        } else {
+                            
+                            Swal.fire({
+                                icon: "error",
+                                title: "Login failed",
+                                text: "Unexpected server response. Please try again.",
+                            });
                         }
                     })
-
+                    .catch(err => {
+                       
+                        Swal.fire({
+                            icon: "error",
+                            title: "Google login failed",
+                            text: err.message,
+                        });
+                    });
             })
             .catch((error) => {
-                console.error("Google login error:", error.message);
-                Swal.fire("Google login failed. Please try again.");
+               
+                Swal.fire({
+                    icon: "error",
+                    title: "Google login failed",
+                    text: error.message,
+                });
             });
     };
+    
+
+    // const handleLoginWithGoogle = () => {
+    //     signInWithGoogle()
+    //         .then((result) => {
+    //             const userData = {
+    //                 name: result.user?.displayName, email: result.user?.email
+    //             }
+    //             axios.post('http://localhost:5000/addUsers', userData)
+    //                 .then(res => {
+    //                     if (res.data.insertedId) {
+    //                         console.log("User registered with Google:", result.user);
+    //                         Swal.fire("Login successful with Google!");
+    //                         navigate(from, { replace: true });
+
+    //                     }
+    //                 })
+
+    //         })
+    //         .catch((error) => {
+    //             console.error("Google login error:", error.message);
+    //             Swal.fire("Google login failed. Please try again.");
+    //         });
+    // };
 
     return (
         <div

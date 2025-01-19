@@ -9,7 +9,7 @@ const Register = () => {
     const navigate = useNavigate();
     const { createUser, signInWithGoogle, UpdateUserProfile } = useContext(AuthContext);
     const [error, setError] = useState("");
-    
+
 
     const handleRegistration = (e) => {
         e.preventDefault();
@@ -33,18 +33,32 @@ const Register = () => {
                 UpdateUserProfile({ displayName: name, photoURL: photoURL })
                     .then(() => {
                         const userData = {
-                            name : name, email: email
+                            name: name, email: email
                         }
-                        axios.post('http://localhost:5000/addUsers', userData)
-                        .then(res =>{
-                            if(res.data.insertedId){
-                                console.log('registration')
-                                Swal.success("Registration successful!");
-                                navigate("/");
 
-                            }
-                        })
-                       
+
+                        axios.post('http://localhost:5000/addUsers', userData)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log('Registration successful');
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Registration successful!",
+                                    }).then(() => {
+                                        navigate("/");
+                                    });
+                                }
+                            })
+                            .catch(err => {
+                                console.error('Error during registration:', err);
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Registration failed",
+                                    text: err.message,
+                                });
+                            });
+
+
                     })
                     .catch((updateError) => {
                         setError("Error updating profile: " + updateError.message);
@@ -52,8 +66,8 @@ const Register = () => {
                             icon: "error",
                             title: "Error updating profile",
                             text: "Please try again later.",
-                          });
-                          
+                        });
+
                     });
             })
             .catch((authError) => {
@@ -62,8 +76,8 @@ const Register = () => {
                     icon: "error",
                     title: "Error updating profile",
                     text: "Please try again later.",
-                  });
-                  
+                });
+
             });
     };
 
@@ -71,25 +85,58 @@ const Register = () => {
         signInWithGoogle()
             .then((result) => {
                 const userData = {
-                    name : result.user?.displayName, email: result.user?.email
-                }
+                    name: result.user?.displayName,
+                    email: result.user?.email,
+                };
+    
                 axios.post('http://localhost:5000/addUsers', userData)
-                .then(res =>{
-                    if(res.data.insertedId){
-                        console.log("User registered with Google:", result.user);
-                        Swal.fire("Google registration successful!");
-                        navigate("/");
-
-                    }
-                })
-               
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log("User registered with Google:", result.user);
+                            Swal.fire({
+                                icon: "success",
+                                title: "Google registration successful!",
+                            }).then(() => {
+                                navigate("/");
+                            });
+                        } else if (res.data.message === 'User already exists') {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Google registration successful!",
+                                text: " Back to the home page.",
+                            }).then(() => {
+                                navigate("/");
+                            });
+                        } else {
+                            
+                            Swal.fire({
+                                icon: "error",
+                                title: "Registration failed",
+                                text: "Unexpected server response. Please try again.",
+                            });
+                        }
+                    })
+                    .catch(err => {
+                       
+                        Swal.fire({
+                            icon: "error",
+                            title: "Google registration failed",
+                            text: err.message,
+                        });
+                    });
             })
             .catch((error) => {
                 setError("Google registration failed: " + error.message);
-                Swal.fire("Google registration failed: " + error.message);
+                Swal.fire({
+                    icon: "error",
+                    title: "Google registration failed",
+                    text: error.message,
+                });
             });
     };
-  
+    
+    
+
     return (
         <div className=" bg-cover bg-center"
             style={{ backgroundImage: `url(${bgImg})` }}>
@@ -137,7 +184,7 @@ const Register = () => {
                                         className="bg-gray-50 border relative border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required
                                     />
-                                   
+
                                 </div>
 
 
