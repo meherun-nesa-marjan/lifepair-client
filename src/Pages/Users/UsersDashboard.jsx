@@ -3,15 +3,22 @@ import { FaSignOutAlt } from 'react-icons/fa';
 import { IoIosHome } from 'react-icons/io';
 import { MdEditDocument, MdFavorite, MdViewCarousel } from 'react-icons/md';
 import { RiContactsFill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const UsersDashboard = () => {
     const { user,signOutUser } = useContext(AuthContext);
+    const navigate = useNavigate();
     console.log(user)
     const handleSignOut = async () => {
         try {
+            
+            navigate("/");
             await signOutUser();
+
+           
+
         } catch (error) {
             console.error("Error signing out:", error);
         }
@@ -40,14 +47,14 @@ const UsersDashboard = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to={''} class="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <Link to={'/Dashboard/Edit'} class="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                             <MdEditDocument />
                                 <span class="flex-1 ms-3 whitespace-nowrap">Edit Biodata</span>
                                 
                             </Link>
                         </li>
                         <li>
-                            <Link to={''} class="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <Link to={'/Dashboard/MyBiodata'} class="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                             <MdViewCarousel />
                                 <span class="flex-1 ms-3 whitespace-nowrap">View Biodata</span>
                                

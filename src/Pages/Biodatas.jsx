@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import ReactSlider from 'react-slider';
 
@@ -16,8 +16,9 @@ const Biodatas = () => {
     const { count } = useLoaderData();
 
     const numberOfPages = Math.ceil(count / itemsPerPage);
-    const pages = [...Array(numberOfPages).keys()];
-
+   // const pages = [...Array(numberOfPages).keys()];
+   const pages = [];
+    console.log(pages)
     useEffect(() => {
         setLoading(true);
         axios.get(`http://localhost:5000/allBiodatas?page=${currentPage}&limit=${itemsPerPage}&gender=${gender}&division=${division}&minage=${minAge}&maxage=${maxAge}`)
@@ -27,7 +28,7 @@ const Biodatas = () => {
             })
             .catch(error => {
                 setError('Failed to fetch biodatas');
-                console.error(err);
+                console.error(error);
                 setLoading(false);
             });
     }, [currentPage, itemsPerPage, gender,division, minAge,maxAge]);
@@ -40,7 +41,7 @@ const Biodatas = () => {
     };
 
     const handleNextPage = () => {
-        if (currentPage < pages.length - 1) {
+        if (currentPage < pages?.length - 1) {
             setCurrentPage((prev) => prev + 1);
         }
     };
@@ -64,7 +65,7 @@ const Biodatas = () => {
                             value={[minAge, maxAge]}
                             onChange={handleAgeChange}
                             renderTrack={(props) => <div {...props} className="slider-track bg-black" />}
-                            renderThumb={(props) => <div {...props} className="slider-thumb bg-red-800  h-4 w-4 rounded-full" />}
+                            renderThumb={(props) => <div {...props} className="slider-thumb bg-red-800  h-2 w-2 rounded-full" />}
                         />
                     </div>
                     <div className="mt-4">
@@ -143,7 +144,7 @@ const Biodatas = () => {
                 ))}
                 <button
                     onClick={handleNextPage}
-                    disabled={currentPage === pages.length - 1}
+                    disabled={currentPage === pages?.length - 1}
                     className="px-4 py-2 border rounded-r-md"
                 >
                     Next

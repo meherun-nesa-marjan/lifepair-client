@@ -80,6 +80,7 @@ const BiodataDetails = () => {
                                 <h3 className="text-xl font-semibold">{similar.Name}</h3>
                                 <p>BiodataId: {similar.BiodataId}</p>
                                 <p>Age: {similar.Age}</p>
+                                <p>Biodata Type: {similar.BiodataType}</p>
                                 <p>Permanent Division: {similar.PermanentDivision}</p>
                                 <p>Occupation: {similar.Occupation}</p>
                                 <Link

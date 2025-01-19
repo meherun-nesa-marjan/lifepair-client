@@ -11,6 +11,7 @@ import Dashboard from '../Pages/AdminDashboard';
 import DashboardLayout from '../Layouts/DashboardLayout';
 import UsersDashboard from '../Pages/Users/UsersDashboard';
 import EditBiodata from '../Pages/Users/EditBiodata';
+import MyBiodata from '../Pages/Users/MyBiodata';
 
 const Routes = createBrowserRouter([
   {
@@ -61,6 +62,11 @@ const Routes = createBrowserRouter([
       {
         path: 'Edit',
         element: <PrivateRoutes><EditBiodata /></PrivateRoutes>
+
+      },
+      {
+        path: 'MyBiodata',
+        element: <PrivateRoutes><MyBiodata /></PrivateRoutes>
 
       },
     ]

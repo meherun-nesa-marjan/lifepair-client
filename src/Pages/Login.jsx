@@ -12,7 +12,9 @@ const Login = () => {
     const [error, setError] = useState("");
 
     const handleLogin = (e) => {
+
         e.preventDefault();
+       
         setError("");
         const email = e.target.email.value;
         const password = e.target.password.value;

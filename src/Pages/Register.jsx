@@ -8,10 +8,13 @@ const Register = () => {
     const navigate = useNavigate();
     const { createUser, signInWithGoogle, UpdateUserProfile } = useContext(AuthContext);
     const [error, setError] = useState("");
+    
+
     const handleRegistration = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
         const email = e.target.email.value;
+        const photoURL = e.target.photoURL.value;
         const password = e.target.password.value;
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
         if (!passwordRegex.test(password)) {
@@ -25,19 +28,30 @@ const Register = () => {
         createUser(email, password)
             .then((result) => {
                 const user = result.user;
-                UpdateUserProfile({ displayName: name })
+                UpdateUserProfile({ displayName: name, photoURL: photoURL })
                     .then(() => {
-                        Swal.fire("Registration successfully");
+                        console.log('resssssssssssss')
+                        Swal.success("Registration successful!");
                         navigate("/");
                     })
                     .catch((updateError) => {
                         setError("Error updating profile: " + updateError.message);
-                        Swal.fire("Error updating profile.");
+                        Swal.fire({
+                            icon: "error",
+                            title: "Error updating profile",
+                            text: "Please try again later.",
+                          });
+                          
                     });
             })
             .catch((authError) => {
                 setError("Registration failed: " + authError.message);
-                Swal.fire("Registration failed: " + authError.message);
+                Swal.fire({
+                    icon: "error",
+                    title: "Error updating profile",
+                    text: "Please try again later.",
+                  });
+                  
             });
     };
 
@@ -53,6 +67,7 @@ const Register = () => {
                 Swal.fire("Google registration failed: " + error.message);
             });
     };
+  
     return (
         <div className=" bg-cover bg-center"
             style={{ backgroundImage: `url(${bgImg})` }}>
@@ -88,8 +103,19 @@ const Register = () => {
                                     <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your Email" required="" />
                                 </div>
                                 <div>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo URL</label>
+                                    <input type="url" name="photoURL" id="photoURL" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Photo URL" required="" />
+                                </div>
+                                <div>
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                    <input type="password" name="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                                    <input
+                                        type='password'
+                                        id="password"
+                                        name="password"
+                                        className="bg-gray-50 border relative border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required
+                                    />
+                                   
                                 </div>
 
 

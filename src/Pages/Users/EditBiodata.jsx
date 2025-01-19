@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
@@ -16,8 +16,8 @@ const EditBiodata = () => {
         console.log("Form is being submitted...");
         
             const biodata = {
-                BiodataId : "",
-                 Name : e.target.Name.value,
+               
+                Name : e.target.Name.value,
                 FathersName : e.target.FathersName.value,
                 MothersName : e.target.MothersName.value,
                 ProfileImage : e.target.ProfileImage.value,
