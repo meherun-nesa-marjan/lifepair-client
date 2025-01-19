@@ -14,11 +14,8 @@ const Biodatas = () => {
     const [division, setDivision] = useState('');
     const itemsPerPage = 20;
     const { count } = useLoaderData();
-
     const numberOfPages = Math.ceil(count / itemsPerPage);
     const pages = [...Array(numberOfPages).keys()];
-   //const pages = [];
-    console.log(pages)
     useEffect(() => {
         setLoading(true);
         axios.get(`http://localhost:5000/allBiodatas?page=${currentPage}&limit=${itemsPerPage}&gender=${gender}&division=${division}&minage=${minAge}&maxage=${maxAge}`)

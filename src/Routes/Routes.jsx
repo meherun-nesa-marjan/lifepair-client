@@ -10,6 +10,8 @@ import BiodataDetails from '../Pages/BiodataDetails';
 import DashboardLayout from '../Layouts/DashboardLayout';
 import EditBiodata from '../Pages/Users/EditBiodata';
 import MyBiodata from '../Pages/Users/MyBiodata';
+import AdminHome from '../Pages/Admin/AdminHome';
+import ManageUsers from '../Pages/Admin/ManageUsers';
 
 const Routes = createBrowserRouter([
   {
@@ -55,8 +57,25 @@ const Routes = createBrowserRouter([
   },
   {
     path:'Dashboard',
-    element: <DashboardLayout />,
+    element: <PrivateRoutes><DashboardLayout /></PrivateRoutes>,
     children:[
+      {
+        path: '/Dashboard',
+        element:  <h1>Welcome to Dashboard</h1>,
+
+      },
+      {
+        path: 'AdminHome',
+        element: <PrivateRoutes><AdminHome /></PrivateRoutes>
+
+      },
+      {
+        path: 'ManageUsers',
+        element: <PrivateRoutes><ManageUsers /></PrivateRoutes>
+
+      },
+
+      //users routes
       {
         path: 'Edit',
         element: <PrivateRoutes><EditBiodata /></PrivateRoutes>

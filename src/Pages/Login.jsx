@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Login = () => {
     const { signInUser, signInWithGoogle } = useContext(AuthContext);
@@ -14,7 +15,7 @@ const Login = () => {
     const handleLogin = (e) => {
 
         e.preventDefault();
-       
+
         setError("");
         const email = e.target.email.value;
         const password = e.target.password.value;
@@ -33,9 +34,20 @@ const Login = () => {
 
     const handleLoginWithGoogle = () => {
         signInWithGoogle()
-            .then(() => {
-                Swal.fire("Login successful with Google!");
-                navigate(from, { replace: true });
+            .then((result) => {
+                const userData = {
+                    name: result.user?.displayName, email: result.user?.email
+                }
+                axios.post('http://localhost:5000/addUsers', userData)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log("User registered with Google:", result.user);
+                            Swal.fire("Login successful with Google!");
+                            navigate(from, { replace: true });
+
+                        }
+                    })
+
             })
             .catch((error) => {
                 console.error("Google login error:", error.message);
@@ -46,7 +58,7 @@ const Login = () => {
     return (
         <div
             className="bg-cover bg-center bg-details"
-            
+
         >
             <section className="bg-gray-50 dark:bg-gray-900">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

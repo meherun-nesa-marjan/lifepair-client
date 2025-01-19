@@ -4,6 +4,7 @@ import bgImg from '../assets/login.jpg'
 import Swal from "sweetalert2";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
+import axios from "axios";
 const Register = () => {
     const navigate = useNavigate();
     const { createUser, signInWithGoogle, UpdateUserProfile } = useContext(AuthContext);
@@ -28,11 +29,22 @@ const Register = () => {
         createUser(email, password)
             .then((result) => {
                 const user = result.user;
+                console.log(user)
                 UpdateUserProfile({ displayName: name, photoURL: photoURL })
                     .then(() => {
-                        console.log('resssssssssssss')
-                        Swal.success("Registration successful!");
-                        navigate("/");
+                        const userData = {
+                            name : name, email: email
+                        }
+                        axios.post('http://localhost:5000/addUsers', userData)
+                        .then(res =>{
+                            if(res.data.insertedId){
+                                console.log('registration')
+                                Swal.success("Registration successful!");
+                                navigate("/");
+
+                            }
+                        })
+                       
                     })
                     .catch((updateError) => {
                         setError("Error updating profile: " + updateError.message);
@@ -58,9 +70,19 @@ const Register = () => {
     const handleRegistrationWithGoogle = () => {
         signInWithGoogle()
             .then((result) => {
-                console.log("User registered with Google:", result.user);
-                Swal.fire("Google registration successful!");
-                navigate("/");
+                const userData = {
+                    name : result.user?.displayName, email: result.user?.email
+                }
+                axios.post('http://localhost:5000/addUsers', userData)
+                .then(res =>{
+                    if(res.data.insertedId){
+                        console.log("User registered with Google:", result.user);
+                        Swal.fire("Google registration successful!");
+                        navigate("/");
+
+                    }
+                })
+               
             })
             .catch((error) => {
                 setError("Google registration failed: " + error.message);

@@ -10,7 +10,7 @@ const PrivateRoutes = ({ children }) => {
     return (
       <div  className="">
         
-        <span class="">Loading...............</span>
+        <span className="">Loading...............</span>
       </div>
     );
   }

@@ -1,13 +1,12 @@
 import  { useContext } from 'react';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { IoIosHome } from 'react-icons/io';
-import { MdEditDocument, MdFavorite, MdViewCarousel } from 'react-icons/md';
+import { MdEditDocument, MdViewCarousel } from 'react-icons/md';
 import { RiContactsFill } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 
-
-const UsersDashboard = () => {
+const AdminDashboard = () => {
     const { user,signOutUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const handleSignOut = async () => {
@@ -40,37 +39,32 @@ const UsersDashboard = () => {
                     </div>
                     <ul className="space-y-2 font-medium">
                         <li>
-                            <Link to={'/'} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <Link to={'/Dashboard/AdminHome'} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                                 <IoIosHome />
-                                <span className="ms-3">Home</span>
+                                <span className="ms-3">Admin Dashboard</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to={'/Dashboard/Edit'} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <Link to={'/Dashboard/ManageUsers'} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                             <MdEditDocument />
-                                <span className="flex-1 ms-3 whitespace-nowrap">Edit Biodata</span>
+                                <span className="flex-1 ms-3 whitespace-nowrap">Manage Users</span>
                                 
                             </Link>
                         </li>
                         <li>
-                            <Link to={`/Dashboard/myBiodata/${user?.email}`} className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <Link to={''} className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                             <MdViewCarousel />
-                                <span className="flex-1 ms-3 whitespace-nowrap">View Biodata</span>
+                                <span className="flex-1 ms-3 whitespace-nowrap">Approved Premium</span>
                                
                             </Link>
                         </li>
                         <li>
                             <Link to={''} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                             <RiContactsFill />
-                                <span className="flex-1 ms-3 whitespace-nowrap">My Contact Request</span>
+                                <span className="flex-1 ms-3 whitespace-nowrap">Approved Contact Request</span>
                             </Link>
                         </li>
-                        <li>
-                            <Link to={''} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
-                            <MdFavorite />
-                                <span className="flex-1 ms-3 whitespace-nowrap">Favourites Biodata.</span>
-                            </Link>
-                        </li>
+                       
                         <li>
                             <button onClick={handleSignOut} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                             <FaSignOutAlt />
@@ -89,4 +83,4 @@ const UsersDashboard = () => {
     );
 };
 
-export default UsersDashboard;
+export default AdminDashboard;
