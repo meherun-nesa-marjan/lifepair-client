@@ -6,52 +6,47 @@ import Swal from 'sweetalert2';
 
 const EditBiodata = () => {
     const { user } = useContext(AuthContext);
-
-
-
-
-
     const handleSave = (e) => {
         e.preventDefault();
         console.log("Form is being submitted...");
-        
-            const biodata = {
-               
-                Name : e.target.Name.value,
-                FathersName : e.target.FathersName.value,
-                MothersName : e.target.MothersName.value,
-                ProfileImage : e.target.ProfileImage.value,
-                ContactEmail : user.email || "",
-                MobileNumber : e.target.MobileNumber.value,
-                Age : e.target.Age.value,
-                BiodataType : e.target.BiodataType.value,
-                DateOfBirth : e.target.DateOfBirth.value,
-                Height : e.target.Height.value,
-                Race : e.target.Race.value,
-                Occupation : e.target.Occupation.value,
-                Weight : e.target.Weight.value,
-                PresentDivision : e.target.PresentDivision.value,
-                PermanentDivision : e.target.PermanentDivision.value,
-                ExpectedPartnerAge : e.target.ExpectedPartnerAge.value,
-                ExpectedPartnerHeight : e.target.ExpectedPartnerHeight.value,
-                ExpectedPartnerWeight : e.target.ExpectedPartnerWeight.value
-            }
-            console.log(biodata)
 
-            axios
-        .patch("http://localhost:5000/addBiodatas", biodata)
-        .then((response) => {
-          console.log("Saved biodata:", response.data);
-          Swal.fire("Success", "Biodata saved successfully!", "success");
-        })
-        .catch((error) => {
-          console.error("Error response:", error.response);
-          Swal.fire(
-            "Error",
-            error.response?.data?.message || "Failed to save biodata.",
-            "error"
-          );
-        });
+        const biodata = {
+
+            Name: e.target.Name.value,
+            FathersName: e.target.FathersName.value,
+            MothersName: e.target.MothersName.value,
+            ProfileImage: e.target.ProfileImage.value,
+            ContactEmail: user.email || "",
+            MobileNumber: e.target.MobileNumber.value,
+            Age: e.target.Age.value,
+            BiodataType: e.target.BiodataType.value,
+            DateOfBirth: e.target.DateOfBirth.value,
+            Height: e.target.Height.value,
+            Race: e.target.Race.value,
+            Occupation: e.target.Occupation.value,
+            Weight: e.target.Weight.value,
+            PresentDivision: e.target.PresentDivision.value,
+            PermanentDivision: e.target.PermanentDivision.value,
+            ExpectedPartnerAge: e.target.ExpectedPartnerAge.value,
+            ExpectedPartnerHeight: e.target.ExpectedPartnerHeight.value,
+            ExpectedPartnerWeight: e.target.ExpectedPartnerWeight.value
+        }
+        console.log(biodata)
+
+        axios
+            .patch("http://localhost:5000/addBiodatas", biodata)
+            .then((response) => {
+                console.log("Saved biodata:", response.data);
+                Swal.fire("Success", "Biodata saved successfully!", "success");
+            })
+            .catch((error) => {
+                console.error("Error response:", error.response);
+                Swal.fire(
+                    "Error",
+                    error.response?.data?.message || "Failed to save biodata.",
+                    "error"
+                );
+            });
     };
 
 
@@ -183,9 +178,36 @@ const EditBiodata = () => {
                         required
                     >
                         <option value="">Select</option>
+                        <option value="4'0">4'0</option>
+                        <option value="4'1">4'1</option>
+                        <option value="4'2">4'2</option>
+                        <option value="4'3">4'3</option>
+                        <option value="4'4">4'4</option>
+                        <option value="4'4">4'5</option>
+                        <option value="4'6">4'6</option>
+                        <option value="4'7">4'7</option>
+                        <option value="4'8">4'8</option>
+                        <option value="4'9">4'9</option>
                         <option value="5'0">5'0</option>
                         <option value="5'1">5'1</option>
+                        <option value="5'2">5'2</option>
+                        <option value="5'3">5'3</option>
+                        <option value="5'4">5'4</option>
+                        <option value="5'5">5'5</option>
+                        <option value="5'6">5'6</option>
+                        <option value="5'7">5'7</option>
+                        <option value="5'8">5'8</option>
+                        <option value="5'9">5'9</option>
                         <option value="6'0">6'0</option>
+                        <option value="6'1">6'1</option>
+                        <option value="6'2">6'2</option>
+                        <option value="6'3">6'3</option>
+                        <option value="6'4">6'4</option>
+                        <option value="6'5">6'5</option>
+                        <option value="6'6">6'6</option>
+                        <option value="6'7">6'7</option>
+                        <option value="6'8">6'8</option>
+                        <option value="6'9">6'9</option>
                     </select>
                 </div>
                 <div className='mb-4 flex items-center'>
@@ -230,7 +252,11 @@ const EditBiodata = () => {
                         <option value="Engineer">Engineer</option>
                         <option value="Teacher">Teacher</option>
                         <option value="Doctor">Doctor</option>
+                        <option value="Banker">Banker</option>
+                        <option value="Photographer">Photographer</option>
+                        <option value="Software Developer">Software Developer</option>
                         <option value="Business">Business</option>
+                        <option value="Nutritionist">Nutritionist</option>
                         <option value="Other">Other</option>
                     </select>
 
@@ -328,9 +354,37 @@ const EditBiodata = () => {
                     >
 
                         <option value="">Select</option>
+                        <option value="4'0">4'0</option>
+                        <option value="4'1">4'1</option>
+                        <option value="4'2">4'2</option>
+                        <option value="4'3">4'3</option>
+                        <option value="4'4">4'4</option>
+                        <option value="4'4">4'5</option>
+                        <option value="4'6">4'6</option>
+                        <option value="4'7">4'7</option>
+                        <option value="4'8">4'8</option>
+                        <option value="4'9">4'9</option>
                         <option value="5'0">5'0</option>
                         <option value="5'1">5'1</option>
+                        <option value="5'2">5'2</option>
+                        <option value="5'3">5'3</option>
+                        <option value="5'4">5'4</option>
+                        <option value="5'5">5'5</option>
+                        <option value="5'6">5'6</option>
+                        <option value="5'7">5'7</option>
+                        <option value="5'8">5'8</option>
+                        <option value="5'9">5'9</option>
                         <option value="6'0">6'0</option>
+                        <option value="6'1">6'1</option>
+                        <option value="6'2">6'2</option>
+                        <option value="6'3">6'3</option>
+                        <option value="6'4">6'4</option>
+                        <option value="6'5">6'5</option>
+                        <option value="6'6">6'6</option>
+                        <option value="6'7">6'7</option>
+                        <option value="6'8">6'8</option>
+                        <option value="6'9">6'9</option>
+
                     </select>
                 </div>
                 <div className="mb-4 flex items-center">

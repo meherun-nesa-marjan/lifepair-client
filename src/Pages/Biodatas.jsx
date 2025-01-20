@@ -112,7 +112,7 @@ const Biodatas = () => {
                                 <p>Biodata Type: {biodata.BiodataType}</p>
                                 <p>Permanent Division: {biodata.PermanentDivision}</p>
                                 <p>Occupation: {biodata.Occupation}</p>
-                                <Link to={`/BiodataDetails/${biodata.BiodataId}`} className="text-red-800 mt-2 block">
+                                <Link to={`/BiodataDetails/${biodata.BiodataId}`} className="text-red-800 font-extrabold mt-2 block">
                                     View Profile
                                 </Link>
                             </div>

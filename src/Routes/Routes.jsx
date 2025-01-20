@@ -12,6 +12,7 @@ import EditBiodata from '../Pages/Users/EditBiodata';
 import MyBiodata from '../Pages/Users/MyBiodata';
 import AdminHome from '../Pages/Admin/AdminHome';
 import ManageUsers from '../Pages/Admin/ManageUsers';
+import FavoriteBiodatas from '../Pages/Users/FavoriteBiodatas';
 
 const Routes = createBrowserRouter([
   {
@@ -84,6 +85,11 @@ const Routes = createBrowserRouter([
       {
         path: 'myBiodata/:email',
         element: <PrivateRoutes><MyBiodata /></PrivateRoutes>
+
+      },
+      {
+        path: 'favoritebiodatas/:email',
+        element: <PrivateRoutes><FavoriteBiodatas /></PrivateRoutes>
 
       },
     ]

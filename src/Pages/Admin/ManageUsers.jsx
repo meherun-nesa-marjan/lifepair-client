@@ -13,7 +13,6 @@ const ManageUsers = () => {
       return res.data;
     },
   });
-
   const handleMakeAdmin = (user) => {
     axiosSecure
       .patch(`/makeAdmin/${user._id}`)

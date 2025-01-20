@@ -1,34 +1,25 @@
-import axios from "axios";
-import {  useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const MyBiodata = () => {
-    const [myBiodata, setMyBiodata] = useState({}); 
-    const { email } = useParams();
+  const { email } = useParams();
+  const axiosSecure = useAxiosSecure();
+  const { data: myBiodata = [], isLoading } = useQuery({
+    queryKey: ["myBiodata", email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/myBiodata/${email}`);
+      return res.data;
+    },
+  });
+
+  if (isLoading) return <p>Loading users...</p>;
 
 
-  useEffect(() => {
-  
-      axios
-        .get(`http://localhost:5000/myBiodata/${email}`)
-        .then((response) => {
-          setMyBiodata(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching biodata:", error);
-        });
-  }, [email]);
-
-
-
-
- 
-
- 
 
   return (
     <div className="max-w-4xl mx-auto my-8 p-6 bg-white shadow-lg rounded-lg">
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center mt-6 space-x-4">
         <img
           src={myBiodata.ProfileImage}
           alt="Profile"
@@ -37,6 +28,8 @@ const MyBiodata = () => {
         <div>
           <h1 className="text-2xl font-bold">{myBiodata.Name}</h1>
           <p className="text-gray-500">{myBiodata.BiodataType}</p>
+
+          <p className="text-gray-500">BiodataId:{myBiodata.BiodataId}</p>
         </div>
       </div>
 
