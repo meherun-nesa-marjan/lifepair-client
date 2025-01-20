@@ -35,18 +35,15 @@ const Register = () => {
                         const userData = {
                             name: name, email: email
                         }
-
-
                         axios.post('http://localhost:5000/addUsers', userData)
                             .then(res => {
                                 if (res.data.insertedId) {
                                     console.log('Registration successful');
+                                    navigate("/");
                                     Swal.fire({
                                         icon: "success",
                                         title: "Registration successful!",
-                                    }).then(() => {
-                                        navigate("/");
-                                    });
+                                    })
                                 }
                             })
                             .catch(err => {
@@ -70,15 +67,6 @@ const Register = () => {
 
                     });
             })
-            .catch((authError) => {
-                setError("Registration failed: " + authError.message);
-                Swal.fire({
-                    icon: "error",
-                    title: "Error updating profile",
-                    text: "Please try again later.",
-                });
-
-            });
     };
 
     const handleRegistrationWithGoogle = () => {
@@ -92,23 +80,18 @@ const Register = () => {
                 axios.post('http://localhost:5000/addUsers', userData)
                     .then(res => {
                         if (res.data.insertedId) {
-                            console.log("User registered with Google:", result.user);
+                            navigate("/");
                             Swal.fire({
                                 icon: "success",
                                 title: "Google registration successful!",
-                            }).then(() => {
-                                navigate("/");
-                            });
+                            })
                         } else if (res.data.message === 'User already exists') {
+                            navigate("/");
                             Swal.fire({
                                 icon: "success",
-                                title: "Google registration successful!",
-                                text: " Back to the home page.",
-                            }).then(() => {
-                                navigate("/");
-                            });
+                                title: "Welcome back!",
+                            })
                         } else {
-                            
                             Swal.fire({
                                 icon: "error",
                                 title: "Registration failed",
@@ -116,14 +99,7 @@ const Register = () => {
                             });
                         }
                     })
-                    .catch(err => {
-                       
-                        Swal.fire({
-                            icon: "error",
-                            title: "Google registration failed",
-                            text: err.message,
-                        });
-                    });
+                  
             })
             .catch((error) => {
                 setError("Google registration failed: " + error.message);

@@ -8,7 +8,6 @@ import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 
 const BiodataDetails = () => {
-
     const { user } = useContext(AuthContext);
     const email = user?.email
     const { id } = useParams();

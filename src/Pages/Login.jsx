@@ -42,23 +42,18 @@ const Login = () => {
                 axios.post('http://localhost:5000/addUsers', userData)
                     .then(res => {
                         if (res.data.insertedId) {
-                            
+                            navigate(from, { replace: true });
                             Swal.fire({
                                 icon: "success",
                                 title: "Login successful with Google!",
-                            }).then(() => {
-                                navigate(from, { replace: true });
-                            });
+                            })
                         } else if (res.data.message === 'User already exists') {
                            
-                           
+                            navigate(from, { replace: true });
                             Swal.fire({
-                                icon: "info",
                                 title: "Welcome back!",
-                                text: "You are already logged in. Redirecting to the home page.",
-                            }).then(() => {
-                                navigate(from, { replace: true });
-                            });
+                                
+                            })
                         } else {
                             
                             Swal.fire({
@@ -68,14 +63,6 @@ const Login = () => {
                             });
                         }
                     })
-                    .catch(err => {
-                       
-                        Swal.fire({
-                            icon: "error",
-                            title: "Google login failed",
-                            text: err.message,
-                        });
-                    });
             })
             .catch((error) => {
                

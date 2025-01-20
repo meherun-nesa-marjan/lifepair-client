@@ -52,7 +52,7 @@ const AdminDashboard = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to={''} className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <Link to={'/Dashboard/ApprovedPremium'} className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                             <MdViewCarousel />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Approved Premium</span>
                                

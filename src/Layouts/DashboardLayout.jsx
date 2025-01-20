@@ -22,9 +22,6 @@ const DashboardLayout = () => {
           
            </div>
            <div className="w-2/3">
-           <div className="">
-           
-           </div>
            <Outlet />
            </div>
             

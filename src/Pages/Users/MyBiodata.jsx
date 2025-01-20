@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const MyBiodata = () => {
   const { email } = useParams();
   const axiosSecure = useAxiosSecure();
-  const { data: myBiodata = [], isLoading } = useQuery({
+  const { data: myBiodata = {}, isLoading, refetch } = useQuery({
     queryKey: ["myBiodata", email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/myBiodata/${email}`);
@@ -13,9 +14,48 @@ const MyBiodata = () => {
     },
   });
 
-  if (isLoading) return <p>Loading users...</p>;
+  if (isLoading) return <p>Loading biodata...</p>;
 
+  if (!myBiodata || Object.keys(myBiodata).length === 0) {
+    return <div className="text-center my-20 text-2xl"><p>Create your biodata to see here.</p></div>;
+  }
 
+  const handlePremium = () => {
+    Swal.fire({
+      title: ' are you sure to make you premium?',
+      text: "This action cannot be undone!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, sure!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .patch(`/requestPremium/${myBiodata._id}`)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "send Request Successfully!!",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Failed to request premium!",
+            });
+            console.error("Error requesting premium:", error.response || error.message);
+          });
+      }
+    });
+  };
 
   return (
     <div className="max-w-4xl mx-auto my-8 p-6 bg-white shadow-lg rounded-lg">
@@ -28,8 +68,7 @@ const MyBiodata = () => {
         <div>
           <h1 className="text-2xl font-bold">{myBiodata.Name}</h1>
           <p className="text-gray-500">{myBiodata.BiodataType}</p>
-
-          <p className="text-gray-500">BiodataId:{myBiodata.BiodataId}</p>
+          <p className="text-gray-500">Biodata ID: {myBiodata.BiodataId}</p>
         </div>
       </div>
 
@@ -65,10 +104,10 @@ const MyBiodata = () => {
         </h2>
         <div className="grid grid-cols-2 gap-4">
           <p>
-            <strong>Fathers Name:</strong> {myBiodata.FathersName}
+            <strong>Father's Name:</strong> {myBiodata.FathersName}
           </p>
           <p>
-            <strong>Mothers Name:</strong> {myBiodata.MothersName}
+            <strong>Mother's Name:</strong> {myBiodata.MothersName}
           </p>
           <p>
             <strong>Permanent Division:</strong> {myBiodata.PermanentDivision}
@@ -108,6 +147,26 @@ const MyBiodata = () => {
             <strong>Mobile:</strong> {myBiodata.MobileNumber}
           </p>
         </div>
+      </div>
+
+      <div className="my-5">
+        {myBiodata.status === "request" ? (
+          <button className="flex px-6 py-3 rounded items-center font-bold text-white bg-yellow-600">
+            Requested for Premium
+          </button>
+        ) : myBiodata.status === "premium" ? (
+          <button className="flex px-6 py-3 rounded items-center font-bold text-white bg-green-600">
+            Premium
+          </button>
+        ) : (
+          <button
+          onClick={() => handlePremium(myBiodata)}
+           
+            className="flex px-6 py-3 rounded items-center font-bold text-white bg-red-800"
+          >
+            Make Biodata Premium
+          </button>
+        )}
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ import MyBiodata from '../Pages/Users/MyBiodata';
 import AdminHome from '../Pages/Admin/AdminHome';
 import ManageUsers from '../Pages/Admin/ManageUsers';
 import FavoriteBiodatas from '../Pages/Users/FavoriteBiodatas';
+import ApprovedPremium from '../Pages/Admin/ApprovedPremium';
 
 const Routes = createBrowserRouter([
   {
@@ -75,6 +76,11 @@ const Routes = createBrowserRouter([
         element: <PrivateRoutes><ManageUsers /></PrivateRoutes>
 
       },
+      {
+        path: 'ApprovedPremium',
+        element: <PrivateRoutes><ApprovedPremium /></PrivateRoutes>
+
+      },
 
       //users routes
       {
@@ -92,6 +98,7 @@ const Routes = createBrowserRouter([
         element: <PrivateRoutes><FavoriteBiodatas /></PrivateRoutes>
 
       },
+     
     ]
 
   },

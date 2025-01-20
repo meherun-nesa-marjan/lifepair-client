@@ -15,31 +15,43 @@ const FavoriteBiodatas = () => {
         },
     });
 
-    const handledelete = (biodata) => {
-        axiosSecure
-          .delete(`/makeAdmin/${biodata._id}`)
-          .then((res) => {
-            if (res.data.modifiedCount > 0) {
-              refetch(); 
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: `${biodata.Name} is Deleted`,
-                showConfirmButton: false,
-                timer: 1500,
+    const handleDelete = (biodata) => {
+        Swal.fire({
+          title: `Are you sure you want to delete ${biodata.Name}?`,
+          text: "This action cannot be undone!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axiosSecure
+              .delete(`/deleteBiodata/${biodata._id}`)
+              .then((res) => {
+                if (res.data.deletedCount > 0) {
+                  refetch();
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `${biodata.Name} has been deleted!`,
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                }
+              })
+              .catch((error) => {
+                console.error("Error deleting biodata:", error.response || error.message);
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Failed to delete the biodata. Please try again.",
+                });
               });
-            }
-          })
-          .catch((error) => {
-            console.error("Error making admin:", error.response || error.message);
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Failed to make the user an admin!",
-            });
-          });
+          }
+        });
       };
-    
+      
 
     if (isLoading) return <p>Loading favorites Biodata...</p>;
     return (
@@ -73,7 +85,7 @@ const FavoriteBiodatas = () => {
                                 <td className="px-12 py-4 ">{biodata.BiodataId}</td>
                                 <td className="px-6 py-4">
                                     <button
-                                      onClick={() => handledelete(biodata)}
+                                      onClick={() => handleDelete(biodata)}
                                      className="font-medium flex items-center text-red-600 dark:text-red-500 hover:underline">
                                     <MdDelete />   Remove
                                     </button>
