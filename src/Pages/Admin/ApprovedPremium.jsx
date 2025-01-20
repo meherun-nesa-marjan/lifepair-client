@@ -1,9 +1,10 @@
+import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 
 const ApprovedPremium = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: requests = [] } = useQuery({
+  const { data: requests = [],  refetch } = useQuery({
     queryKey: ["requests"],
     queryFn: async () => {
       const res = await axiosSecure.get("/allPremiumRequests");
@@ -11,7 +12,30 @@ const ApprovedPremium = () => {
       return res.data;
     },
   });
-
+const handleMakePremium = (request) => {
+    axiosSecure
+      .patch(`/makePremium/${request._id}`)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          refetch(); 
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${request.Name} is Premium Now`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error making admin:", error.response || error.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Failed to make the user Premium!",
+        });
+      });
+  };
   return (
     <div className='py-10'>
       <h1 className="text-2xl font-bold mb-4">Premium Approval Requests</h1>
@@ -33,9 +57,10 @@ const ApprovedPremium = () => {
               <td className="border px-4 text-center py-2">{request.BiodataId}</td>
               <td className="border px-4 py-2 text-center">
                 <button
+                 onClick={() => handleMakePremium(request)}
                   className="bg-red-800 text-white px-4 py-2 rounded"
                 >
-                  Make Premium
+                 Approved Premium
                 </button>
               </td>
             </tr>

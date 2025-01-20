@@ -6,9 +6,11 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../Providers/AuthProvider';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import useBiodataStatus from '../Hooks/useBiodataStatus';
 
 const BiodataDetails = () => {
     const { user } = useContext(AuthContext);
+    const { biodataStatus } = useBiodataStatus();
     const email = user?.email
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
@@ -68,6 +70,7 @@ const BiodataDetails = () => {
                     <div className=" mx-auto my-8 p-6 bg-white shadow-lg rounded-lg">
 
                         <div className="mt-6">
+                            <p>Status: <strong>{biodataStatus}</strong></p>
                             <h3 className="text-3xl font-semibold">{biodata.Name}</h3>
                             <p>BiodataId: {biodata.BiodataId}</p>
                             <h2 className="text-xl font-semibold border-b pb-2 mb-4">
@@ -136,7 +139,8 @@ const BiodataDetails = () => {
                             <h2 className="text-xl font-semibold border-b pb-2 mb-4">
                                 Contact Information
                             </h2>
-                            <div className="grid grid-cols-2 gap-4">
+                            {biodataStatus === 'premium' ? (
+                                <div className="grid grid-cols-2 gap-4">
                                 <p>
                                     <strong>Email:</strong> {biodata.ContactEmail}
                                 </p>
@@ -144,6 +148,12 @@ const BiodataDetails = () => {
                                     <strong>Mobile:</strong> {biodata.MobileNumber}
                                 </p>
                             </div>
+                            ) : (
+                                <p className="text-gray-500">
+                                    Contact information is available for premium members only.
+                                </p>
+                            )}
+                           
                         </div>
                         <div className="my-5">
                             <button
