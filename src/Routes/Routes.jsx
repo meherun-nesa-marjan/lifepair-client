@@ -15,6 +15,8 @@ import ManageUsers from '../Pages/Admin/ManageUsers';
 import FavoriteBiodatas from '../Pages/Users/FavoriteBiodatas';
 import ApprovedPremium from '../Pages/Admin/ApprovedPremium';
 import CheckoutPage from '../Pages/CheckoutPage';
+import ContactRequests from '../Pages/Users/ContactRequests';
+import ContactRequestApproved from '../Pages/Admin/ContactRequestApproved';
 
 const Routes = createBrowserRouter([
   {
@@ -88,8 +90,13 @@ const Routes = createBrowserRouter([
         element: <PrivateRoutes><ApprovedPremium /></PrivateRoutes>
 
       },
+      {
+        path: 'ContactRequestApproved',
+        element: <PrivateRoutes><ContactRequestApproved /></PrivateRoutes>
 
-      //users routes
+      },
+
+      //users routes 
       {
         path: 'Edit',
         element: <PrivateRoutes><EditBiodata /></PrivateRoutes>
@@ -99,6 +106,10 @@ const Routes = createBrowserRouter([
         path: 'myBiodata/:email',
         element: <PrivateRoutes><MyBiodata /></PrivateRoutes>
 
+      },
+      {
+        path: 'ContactRequests/:email',
+        element: <PrivateRoutes><ContactRequests /></PrivateRoutes>
       },
       {
         path: 'favoritebiodatas/:email',
