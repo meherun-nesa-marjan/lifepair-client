@@ -14,6 +14,7 @@ import AdminHome from '../Pages/Admin/AdminHome';
 import ManageUsers from '../Pages/Admin/ManageUsers';
 import FavoriteBiodatas from '../Pages/Users/FavoriteBiodatas';
 import ApprovedPremium from '../Pages/Admin/ApprovedPremium';
+import CheckoutPage from '../Pages/CheckoutPage';
 
 const Routes = createBrowserRouter([
   {
@@ -34,6 +35,12 @@ const Routes = createBrowserRouter([
       {
         path: '/BiodataDetails/:id',
         element: <PrivateRoutes><BiodataDetails /></PrivateRoutes>
+
+      },
+
+      {
+        path: '/CheckoutPage/:id',
+        element: <PrivateRoutes><CheckoutPage /></PrivateRoutes>
 
       },
      

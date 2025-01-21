@@ -151,6 +151,12 @@ const BiodataDetails = () => {
                             ) : (
                                 <p className="text-gray-500">
                                     Contact information is available for premium members only.
+                                    <Link
+                                    to={`/CheckoutPage/${biodata.BiodataId}`}
+                                    className="text-red-800 font-bold mt-2 block"
+                                >
+                                    View Contact information
+                                </Link>
                                 </p>
                             )}
                            
