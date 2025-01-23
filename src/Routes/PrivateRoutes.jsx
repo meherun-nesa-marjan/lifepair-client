@@ -8,9 +8,9 @@ const PrivateRoutes = ({ children }) => {
 
   if (loading) {
     return (
-      <div  className="">
+      <div  className="text-center my-40">
         
-        <span className="">Loading...............</span>
+        <span className="text-2xl">Loading...............</span>
       </div>
     );
   }

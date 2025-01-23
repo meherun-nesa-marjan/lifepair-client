@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useContext } from 'react';
 import { MdFavorite } from 'react-icons/md';
 import { useParams, Link } from 'react-router-dom';
@@ -35,8 +34,8 @@ const BiodataDetails = () => {
             Occupation: biodata.Occupation
         }
         console.log(favoritebiodata)
-        axios
-            .post("http://localhost:5000/addFavorite", favoritebiodata)
+        axiosSecure
+            .post("https://life-pair-server.vercel.app/addFavorite", favoritebiodata)
             .then((response) => {
                 if (response.data.message === "already addedd") {
 
@@ -70,13 +69,12 @@ const BiodataDetails = () => {
                     <div className=" mx-auto my-8 p-6 bg-white shadow-lg rounded-lg">
 
                         <div className="mt-6">
-                            <p>Status: <strong>{biodataStatus}</strong></p>
                             <h3 className="text-3xl font-semibold">{biodata.Name}</h3>
                             <p>BiodataId: {biodata.BiodataId}</p>
                             <h2 className="text-xl font-semibold border-b pb-2 mb-4">
                                 Personal Information
                             </h2>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
                                 <p>
                                     <strong>Date of Birth:</strong> {biodata.DateOfBirth}
                                 </p>
@@ -102,7 +100,7 @@ const BiodataDetails = () => {
                             <h2 className="text-xl font-semibold border-b pb-2 mb-4">
                                 Family Information
                             </h2>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
                                 <p>
                                     <strong>Fathers Name:</strong> {biodata.FathersName}
                                 </p>
@@ -122,7 +120,7 @@ const BiodataDetails = () => {
                             <h2 className="text-xl font-semibold border-b pb-2 mb-4">
                                 Partner Preferences
                             </h2>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
                                 <p>
                                     <strong>Expected Partner Age:</strong> {biodata.ExpectedPartnerAge} years
                                 </p>
@@ -140,7 +138,7 @@ const BiodataDetails = () => {
                                 Contact Information
                             </h2>
                             {biodataStatus === 'premium' ? (
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
                                 <p>
                                     <strong>Email:</strong> {biodata.ContactEmail}
                                 </p>
@@ -164,7 +162,7 @@ const BiodataDetails = () => {
                         <div className="my-5">
                             <button
                                 onClick={handleAddFavorite}
-                                className='flex px-6 py-3 rounded items-center text-2xl font-bold text-white bg-red-800'>
+                                className='flex px-6 py-3 rounded items-center md:text-2xl text-xl font-bold text-white bg-red-800'>
 
                                 <MdFavorite /> Add Favorite
                             </button>

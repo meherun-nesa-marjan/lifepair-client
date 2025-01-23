@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if (currentUser) {
         const user = { email: currentUser.email };
-        axios.post('http://localhost:5000/jwt', user)
+        axios.post('https://life-pair-server.vercel.app/jwt', user)
           .then(res => {
            if(res.data.token){
             localStorage.setItem('access-tokan' , res.data.token)

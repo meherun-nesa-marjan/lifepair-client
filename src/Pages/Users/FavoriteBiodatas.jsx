@@ -55,7 +55,7 @@ const FavoriteBiodatas = () => {
 
     if (isLoading) return <p>Loading favorites Biodata...</p>;
     return (
-        <div className="my-8">
+        <div className="my-8 md:px-10 mx-auto">
             <h1 className="text-2xl font-bold mb-4">Favourite Biodatas: {favoriteBiodatas.length}</h1>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

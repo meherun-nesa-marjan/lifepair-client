@@ -1,86 +1,154 @@
-import  { useContext } from 'react';
-import { FaSignOutAlt } from 'react-icons/fa';
+import { useContext, useState, useEffect, useRef } from 'react';
+import { FaHandHoldingHeart, FaSignOutAlt } from 'react-icons/fa';
 import { IoIosHome } from 'react-icons/io';
-import { MdEditDocument, MdFavorite, MdViewCarousel } from 'react-icons/md';
+import { MdEditDocument, MdFavorite, MdOutlineRemoveRedEye} from 'react-icons/md';
 import { RiContactsFill } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 
-
 const UsersDashboard = () => {
-    const { user,signOutUser } = useContext(AuthContext);
+    const { user, signOutUser } = useContext(AuthContext);
     const navigate = useNavigate();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const sidebarRef = useRef(null);
+
     const handleSignOut = async () => {
         try {
-            navigate("/");
+            navigate('/');
             await signOutUser();
         } catch (error) {
             console.error("Error signing out:", error);
         }
     };
 
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+                setIsSidebarOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+    const closeSidebarAndNavigate = (path) => {
+        setIsSidebarOpen(false);
+        navigate(path);
+    };
+
     return (
-        <div className='bg-red-800 text-white'>
+        <div className="text-white">
+            {/* Hamburger Menu Button */}
+            <button 
+                onClick={toggleSidebar} 
+                aria-controls="logo-sidebar" 
+                type="button" 
+                className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            >
+                <span className="sr-only">Open sidebar</span>
+                <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path clipRule="evenodd" fillRule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+                </svg>
+            </button>
 
-           
-
-            <aside className="bg-red-800 text-white w-72">
-                <div className="min-h-screen px-3 py-4 overflow-y-auto dark:bg-gray-800">
-                <div className="flex items-center space-x-4 p-4">
+            {/* Sidebar */}
+            <aside 
+                id="logo-sidebar" 
+                ref={sidebarRef}
+                className={`fixed top-0 left-0 z-40 h-screen bg-red-800 text-white w-72 transition-transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} sm:translate-x-0`} 
+                aria-label="Sidebar"
+            >
+                <div className="h-full px-3 py-4 overflow-y-auto dark:bg-gray-800">
+                    <div className="flex items-center space-x-4 p-4">
                         <img
                             src={user?.photoURL || '/default-avatar.png'}
                             alt="User Avatar"
                             className="w-10 h-10 rounded-full"
                         />
-                        <span className=" dark:text-white">{user?.displayName || 'User Name'}</span>
+                        <span className="dark:text-white">{user?.displayName || 'User Name'}</span>
                     </div>
                     <ul className="space-y-2 font-medium">
                         <li>
-                            <Link to={'/'} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <Link 
+                                to={'/'} 
+                                onClick={() => closeSidebarAndNavigate('/')}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group"
+                            >
                                 <IoIosHome />
-                                <span className="ms-3">Home</span>
+                                <span className="ms-3">Back to Home</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to={'/Dashboard/Edit'} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
-                            <MdEditDocument />
+                            <Link 
+                                to={'/Dashboard/Edit'} 
+                                onClick={() => closeSidebarAndNavigate('/Dashboard/Edit')}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group"
+                            >
+                                <MdEditDocument />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Edit Biodata</span>
-                                
                             </Link>
                         </li>
                         <li>
-                            <Link to={`/Dashboard/myBiodata/${user?.email}`} className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
-                            <MdViewCarousel />
+                            <Link 
+                                to={`/Dashboard/myBiodata/${user?.email}`} 
+                                onClick={() => closeSidebarAndNavigate(`/Dashboard/myBiodata/${user?.email}`)}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group"
+                            >
+                                <MdOutlineRemoveRedEye />
                                 <span className="flex-1 ms-3 whitespace-nowrap">View Biodata</span>
-                               
                             </Link>
                         </li>
                         <li>
-                            <Link to={`/Dashboard/ContactRequests/${user?.email}`} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
-                            <RiContactsFill />
+                            <Link 
+                                to={`/Dashboard/ContactRequests/${user?.email}`} 
+                                onClick={() => closeSidebarAndNavigate(`/Dashboard/ContactRequests/${user?.email}`)}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group"
+                            >
+                                <RiContactsFill />
                                 <span className="flex-1 ms-3 whitespace-nowrap">My Contact Request</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to={`/Dashboard/favoritebiodatas/${user?.email}`} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
-                            <MdFavorite />
+                            <Link 
+                                to={`/Dashboard/favoritebiodatas/${user?.email}`} 
+                                onClick={() => closeSidebarAndNavigate(`/Dashboard/favoritebiodatas/${user?.email}`)}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group"
+                            >
+                                <MdFavorite />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Favourites Biodata.</span>
                             </Link>
                         </li>
                         <li>
-                            <button onClick={handleSignOut} className="flex items-center p-2  rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
-                            <FaSignOutAlt />
-                                <span className="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
-                            </button>
-                            
+                            <Link 
+                                to={'/Dashboard/GotMarried'} 
+                                onClick={() => closeSidebarAndNavigate('/Dashboard/GotMarried')}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group"
+                            >
+                                <FaHandHoldingHeart />
+                                <span className="flex-1 ms-3 whitespace-nowrap">Got Married</span>
+                            </Link>
                         </li>
                         <li>
-                           
+                           <div className="p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                           <button 
+                                onClick={handleSignOut} 
+                                className="flex items-center"
+                            >
+                                <FaSignOutAlt />
+                                <span className="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
+                            </button>
+                           </div>
                         </li>
                     </ul>
                 </div>
             </aside>
-
         </div>
     );
 };

@@ -56,7 +56,7 @@ const ContactRequests = () => {
     };
 
     return (
-        <div className="p-6">
+        <div className="md:p-10 px-2 mx-auto">
             <h1 className="text-2xl font-bold mb-4">Contact Requests {contactRequests.length}</h1>
 
 

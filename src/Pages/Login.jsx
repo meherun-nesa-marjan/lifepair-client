@@ -39,7 +39,7 @@ const Login = () => {
                     email: result.user?.email,
                 };
     
-                axios.post('http://localhost:5000/addUsers', userData)
+                axios.post('https://life-pair-server.vercel.app/addUsers', userData)
                     .then(res => {
                         if (res.data.insertedId) {
                             navigate(from, { replace: true });
@@ -73,30 +73,6 @@ const Login = () => {
                 });
             });
     };
-    
-
-    // const handleLoginWithGoogle = () => {
-    //     signInWithGoogle()
-    //         .then((result) => {
-    //             const userData = {
-    //                 name: result.user?.displayName, email: result.user?.email
-    //             }
-    //             axios.post('http://localhost:5000/addUsers', userData)
-    //                 .then(res => {
-    //                     if (res.data.insertedId) {
-    //                         console.log("User registered with Google:", result.user);
-    //                         Swal.fire("Login successful with Google!");
-    //                         navigate(from, { replace: true });
-
-    //                     }
-    //                 })
-
-    //         })
-    //         .catch((error) => {
-    //             console.error("Google login error:", error.message);
-    //             Swal.fire("Google login failed. Please try again.");
-    //         });
-    // };
 
     return (
         <div

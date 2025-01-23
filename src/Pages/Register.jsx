@@ -35,7 +35,7 @@ const Register = () => {
                         const userData = {
                             name: name, email: email
                         }
-                        axios.post('http://localhost:5000/addUsers', userData)
+                        axios.post('https://life-pair-server.vercel.app/addUsers', userData)
                             .then(res => {
                                 if (res.data.insertedId) {
                                     console.log('Registration successful');
@@ -77,7 +77,7 @@ const Register = () => {
                     email: result.user?.email,
                 };
     
-                axios.post('http://localhost:5000/addUsers', userData)
+                axios.post('https://life-pair-server.vercel.app/addUsers', userData)
                     .then(res => {
                         if (res.data.insertedId) {
                             navigate("/");

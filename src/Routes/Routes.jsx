@@ -17,11 +17,19 @@ import ApprovedPremium from '../Pages/Admin/ApprovedPremium';
 import CheckoutPage from '../Pages/CheckoutPage';
 import ContactRequests from '../Pages/Users/ContactRequests';
 import ContactRequestApproved from '../Pages/Admin/ContactRequestApproved';
+import GotMarried from '../Pages/Users/GotMarried';
+import AdminSuccessStories from '../Pages/Admin/AdminSuccessStories';
+import AdminRoutes from './AdminRoutes';
+import Dashboad from '../Components/Dashboad';
+import Contact from '../Pages/Contact';
+import NotFound from '../Pages/NotFound';
 
 const Routes = createBrowserRouter([
   {
     path: "/",
+    errorElement:<NotFound />,
     element: <MainLayouts />,
+   
     children: [
       {
         path: '/',
@@ -31,7 +39,7 @@ const Routes = createBrowserRouter([
       {
         path: '/Biodatas',
         element: <Biodatas />,
-        loader: () => fetch('http://localhost:5000/allBiodatasCount')
+        loader: () => fetch('https://life-pair-server.vercel.app/allBiodatasCount')
 
       },
       {
@@ -52,6 +60,11 @@ const Routes = createBrowserRouter([
 
       },
       {
+        path: '/Contact',
+        element: <Contact />
+
+      },
+      {
         path: '/Login',
         element: <Login />
 
@@ -68,31 +81,36 @@ const Routes = createBrowserRouter([
   },
   {
     path:'Dashboard',
+    errorElement:<NotFound />,
     element: <PrivateRoutes><DashboardLayout /></PrivateRoutes>,
+
     children:[
       {
         path: '/Dashboard',
-        element:  <h1>Welcome to Dashboard</h1>,
+        element:  <PrivateRoutes><Dashboad></Dashboad></PrivateRoutes>,
 
       },
       {
         path: 'AdminHome',
-        element: <PrivateRoutes><AdminHome /></PrivateRoutes>
+        element: <AdminRoutes><AdminHome /></AdminRoutes>
 
       },
       {
         path: 'ManageUsers',
-        element: <PrivateRoutes><ManageUsers /></PrivateRoutes>
+        element: <AdminRoutes><ManageUsers /></AdminRoutes>
 
       },
       {
         path: 'ApprovedPremium',
-        element: <PrivateRoutes><ApprovedPremium /></PrivateRoutes>
-
+        element: <AdminRoutes><ApprovedPremium /></AdminRoutes>
       },
       {
         path: 'ContactRequestApproved',
-        element: <PrivateRoutes><ContactRequestApproved /></PrivateRoutes>
+        element: <AdminRoutes><ContactRequestApproved /></AdminRoutes>
+      },
+      {
+        path: 'AdminSuccessStories',
+        element: <AdminRoutes><AdminSuccessStories /></AdminRoutes>
 
       },
 
@@ -117,6 +135,11 @@ const Routes = createBrowserRouter([
 
       },
      
+      {
+        path: 'GotMarried',
+        element: <PrivateRoutes><GotMarried /></PrivateRoutes>
+
+      },
     ]
 
   },

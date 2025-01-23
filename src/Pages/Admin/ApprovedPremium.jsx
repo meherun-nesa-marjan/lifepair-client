@@ -12,6 +12,16 @@ const ApprovedPremium = () => {
       return res.data;
     },
   });
+
+  const { data: PremiumMembers = []} = useQuery({
+    queryKey: ["PremiumMembers"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/allPremiumMembers");
+      console.log(res.data)
+      return res.data;
+    },
+  });
+
 const handleMakePremium = (request) => {
     axiosSecure
       .patch(`/makePremium/${request._id}`)
@@ -38,6 +48,7 @@ const handleMakePremium = (request) => {
   };
   return (
     <div className='py-10'>
+      <div className="">
       <h1 className="text-2xl font-bold mb-4">Premium Approval Requests</h1>
      <div className="overflow-x-auto">
      <table className="table-auto w-full border-collapse border border-gray-300">
@@ -68,6 +79,31 @@ const handleMakePremium = (request) => {
         </tbody>
       </table>
      </div>
+      </div>
+      <div className="pt-7">
+      <h1 className="text-2xl font-bold mb-4">Premium Members</h1>
+     <div className="overflow-x-auto">
+     <table className="table-auto w-full border-collapse border border-gray-300">
+        <thead>
+          <tr className="bg-gray-200">
+            <th className="border px-4 py-2">Name</th>
+            <th className="border px-4 py-2">Email</th>
+            <th className="border px-4 py-2">Biodata ID</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          {PremiumMembers .map((PremiumMember) => (
+            <tr key={PremiumMember._id}>
+              <td className="border px-4 py-2 text-center">{PremiumMember.Name}</td>
+              <td className="border px-4 py-2 text-center">{PremiumMember.ContactEmail}</td>
+              <td className="border px-4 text-center py-2">{PremiumMember.BiodataId}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+     </div>
+      </div>
     </div>
   );
 };

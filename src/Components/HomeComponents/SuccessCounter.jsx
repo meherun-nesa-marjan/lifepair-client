@@ -5,7 +5,7 @@ const SuccessCounter = () => {
   const { data: biodataCounts = {}, isLoading, isError, error } = useQuery({
     queryKey: ["biodataCounts"],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:5000/biodataCounts');
+      const res = await axios.get('https://life-pair-server.vercel.app/biodataCounts');
       return res.data;
     },
   });
@@ -21,12 +21,12 @@ const SuccessCounter = () => {
   }
 
   // Destructure data
-  const { totalBiodata, girlsBiodata, boysBiodata } = biodataCounts;
+  const { totalBiodata, girlsBiodata, boysBiodata, completedMarriages } = biodataCounts;
 
   return (
     <div className="my-12 py-8 w-11/12 mx-auto">
       <h2 className="text-3xl font-bold text-center mb-8">Success Counter</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 text-center">
         <div className="bg-white shadow-md p-6 rounded-lg">
           <h3 className="text-4xl font-bold text-red-800">{totalBiodata}</h3>
           <p className="text-gray-700 mt-2">Total Biodata</p>
@@ -38,6 +38,11 @@ const SuccessCounter = () => {
         <div className="bg-white shadow-md p-6 rounded-lg">
           <h3 className="text-4xl font-bold text-green-800">{boysBiodata}</h3>
           <p className="text-gray-700 mt-2">Boys Biodata</p>
+        </div>
+        <div className="bg-white shadow-md p-6 rounded-lg">
+          <h3 className="text-4xl font-bold text-green-800">{completedMarriages}</h3>
+          <p className="text-gray-700 mt-2">Completed Marriages</p>
+          
         </div>
       </div>
     </div>

@@ -93,7 +93,7 @@ const CheckoutForm = () => {
 
     };
     return (
-        <div className="lg:w-6/12 w-full mx-auto border-2 p-10">
+        <div className="lg:w-6/12 w-full mx-auto border-2 p-3 lg:p-10">
             <form onSubmit={handleSubmit}>
                 <div className="">
                     <div className="mb-4 flex items-center">

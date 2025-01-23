@@ -1,17 +1,16 @@
 import { useContext } from 'react';
-import axios from 'axios';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 
 
 const EditBiodata = () => {
     const { user } = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure()
     const handleSave = (e) => {
         e.preventDefault();
-        console.log("Form is being submitted...");
-
         const biodata = {
-
             Name: e.target.Name.value,
             FathersName: e.target.FathersName.value,
             MothersName: e.target.MothersName.value,
@@ -31,13 +30,16 @@ const EditBiodata = () => {
             ExpectedPartnerHeight: e.target.ExpectedPartnerHeight.value,
             ExpectedPartnerWeight: e.target.ExpectedPartnerWeight.value
         }
-        console.log(biodata)
-
-        axios
-            .patch("http://localhost:5000/addBiodatas", biodata)
+        axiosSecure
+            .patch("/addBiodatas", biodata)
             .then((response) => {
                 console.log("Saved biodata:", response.data);
-                Swal.fire("Success", "Biodata saved successfully!", "success");
+                const status = response.data.status;
+                if (status === 'created') {
+                    Swal.fire("Success", "Biodata created successfully!", "success");
+                } else if (status === 'updated') {
+                    Swal.fire("Success", "Biodata updated successfully!", "success");
+                }
             })
             .catch((error) => {
                 console.error("Error response:", error.response);
@@ -47,108 +49,117 @@ const EditBiodata = () => {
                     "error"
                 );
             });
+
     };
+
+    const { data: myBiodata = {} } = useQuery({
+        queryKey: ["myBiodata", user.email],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/myBiodata/${user?.email}`);
+            return res.data;
+        },
+    });
 
 
 
     return (
-        <div className="py-10">
+        <div className="py-10 w-full mx-auto">
             <div className="text-center mx-auto">
                 <h1 className="text-2xl font-semibold mb-4">Edit Biodata</h1>
             </div>
-            <form onSubmit={handleSave}>
+            <form className='p-8' onSubmit={handleSave}>
                 {/* Name */}
-                <div className="mb-4 flex items-center">
-                    <label className="w-2/12 text-sm font-bold text-gray-700">Your Name:</label>
+                <div className="mb-4 lg:flex items-center">
+                    <label className="lg:w-3/12 w-full text-sm font-bold text-gray-700">Your Name:</label>
                     <input
                         type="text"
                         name="Name"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.Name || ""}
+                        className="lg:w-2/3 w-full px-3 py-2 border rounded-md focus:outline-none"
                         required
                     />
                 </div>
 
                 {/* Father's Name */}
-                <div className="mb-4 flex items-center">
-                    <label className="w-2/12 text-sm font-bold text-gray-700">Father's Name:</label>
+                <div className="mb-4 lg:flex items-center">
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Father's Name:</label>
                     <input
                         type="text"
                         name="FathersName"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.FathersName || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
                     />
                 </div>
 
                 {/* Mother's Name */}
-                <div className="mb-4 flex items-center">
-                    <label className="w-2/12 text-sm font-bold text-gray-700">Mother's Name:</label>
+                <div className="mb-4 lg:flex items-center">
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Mother's Name:</label>
                     <input
                         type="text"
                         name="MothersName"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.MothersName || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
                     />
                 </div>
 
                 {/* Profile Image */}
-                <div className="mb-4 flex items-center">
-                    <label className="w-2/12 text-sm font-bold text-gray-700">Profile Image:</label>
+                <div className="mb-4 lg:flex items-center">
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Profile Image:</label>
                     <input
                         type="url"
                         name="ProfileImage"
+                        defaultValue={myBiodata?.ProfileImage || ""}
 
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
                     />
                 </div>
 
                 {/* Contact Email (Read-only) */}
-                <div className="mb-4 flex items-center">
-                    <label className="w-2/12 text-sm font-bold text-gray-700">Contact Email:</label>
+                <div className="mb-4 lg:flex items-center">
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Contact Email:</label>
                     <input
                         type="email"
                         name="ContactEmail"
                         value={user.email}
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         readOnly
                     />
                 </div>
 
                 {/* Mobile Number */}
-                <div className="mb-4 flex items-center">
-                    <label className="w-2/12 text-sm font-bold text-gray-700">Mobile Number:</label>
+                <div className="mb-4 lg:flex items-center">
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Mobile Number:</label>
                     <input
                         type="text"
                         name="MobileNumber"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.MobileNumber || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
                     />
                 </div>
 
                 {/* Age */}
-                <div className="mb-4 flex items-center">
-                    <label className="w-2/12 text-sm font-bold text-gray-700">Age:</label>
+                <div className="mb-4 lg:flex items-center">
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Age:</label>
                     <input
                         type="number"
                         name="Age"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.Age || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
                     />
                 </div>
 
                 {/* Biodata Type */}
-                <div className="mb-4 flex items-center">
-                    <label className="w-2/12 text-sm font-bold text-gray-700">Biodata Type:</label>
+                <div className="mb-4 lg:flex items-center">
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Biodata Type:</label>
                     <select
                         name="BiodataType"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.BiodataType || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
                     >
                         <option value="">Select</option>
@@ -158,23 +169,23 @@ const EditBiodata = () => {
                 </div>
 
                 {/* Date of Birth */}
-                <div className="mb-4 flex items-center">
-                    <label className="w-2/12 text-sm font-bold text-gray-700">Date of Birth:</label>
+                <div className="mb-4 lg:flex items-center">
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Date of Birth:</label>
                     <input
                         type="date"
                         name="DateOfBirth"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.DateOfBirth || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                     />
                 </div>
 
                 {/* Height */}
-                <div className="mb-4 flex items-center">
-                    <label className="w-2/12 text-sm font-bold text-gray-700">Height:</label>
+                <div className="mb-4 lg:flex items-center">
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Height:</label>
                     <select
                         name="Height"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.Height || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
                     >
                         <option value="">Select</option>
@@ -210,16 +221,16 @@ const EditBiodata = () => {
                         <option value="6'9">6'9</option>
                     </select>
                 </div>
-                <div className='mb-4 flex items-center'>
+                <div className='mb-4 lg:flex items-center'>
                     <label
-                        className="w-2/12 font-bold text-sm  text-gray-700 dark:text-gray-300"
+                        className="w-full lg:w-3/12 font-bold text-sm  text-gray-700 dark:text-gray-300"
                     >
                         Race :
                     </label>
                     <select
                         name="Race"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.Race || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
                     >
                         <option value="">
@@ -232,17 +243,17 @@ const EditBiodata = () => {
                         <option value="Other">Other</option>
                     </select>
                 </div>
-                <div className="mb-4 flex items-center">
+                <div className="mb-4 lg:flex items-center">
 
                     <label
-                        className="w-2/12 font-bold text-sm  text-gray-700 dark:text-gray-300"
+                        className="w-full lg:w-3/12 font-bold text-sm  text-gray-700 dark:text-gray-300"
                     >
                         Occupation :
                     </label>
                     <select
                         name="Occupation"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.Occupation || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
                     >
                         <option value="">
@@ -261,14 +272,13 @@ const EditBiodata = () => {
                     </select>
 
                 </div>
-                <div className="mb-4 flex items-center">
-                    <label className="w-2/12 font-bold text-sm  text-gray-700 dark:text-gray-300">Permanent Division</label>
+                <div className="mb-4 lg:flex items-center">
+                    <label className="w-full lg:w-3/12 font-bold text-sm  text-gray-700 dark:text-gray-300">Permanent Division</label>
                     <select
                         type="text"
                         name="PermanentDivision"
-
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.PermanentDivision || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                     >
                         <option value="">Select Division</option>
                         <option value="Dhaka">Dhaka</option>
@@ -280,14 +290,14 @@ const EditBiodata = () => {
                         <option value="Sylhet">Sylhet</option>
                     </select>
                 </div>
-                <div className="mb-4 flex items-center">
-                    <label className="w-2/12 font-bold text-sm  text-gray-700 dark:text-gray-300">Present Division</label>
+                <div className="mb-4 lg:flex items-center">
+                    <label className="w-full lg:w-3/12 font-bold text-sm  text-gray-700 dark:text-gray-300">Present Division</label>
                     <select
                         type="text"
                         name="PresentDivision"
+                        defaultValue={myBiodata?.PresentDivision || ""}
 
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                     >
                         <option value="">Select Division</option>
                         <option value="Dhaka">Dhaka</option>
@@ -300,17 +310,17 @@ const EditBiodata = () => {
                     </select>
                 </div>
 
-                <div className="mb-4 flex items-center">
+                <div className="mb-4 lg:flex items-center">
                     <label
-                        className="w-2/12 text-sm font-bold text-gray-700 dark:text-gray-300"
+                        className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-gray-300"
                     >
                         Weight (kg) :
                     </label>
                     <select
                         type="number"
                         name="Weight"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.Weight || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
                     >
                         <option >
@@ -324,9 +334,9 @@ const EditBiodata = () => {
                     </select>
 
                 </div>
-                <div className="mb-4 flex items-center">
+                <div className="mb-4 lg:flex items-center">
                     <label
-                        className="w-2/12 text-sm font-bold text-gray-700 dark:text-gray-300"
+                        className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-gray-300"
                     >
                         Expected Partner Age :
 
@@ -334,22 +344,22 @@ const EditBiodata = () => {
                     <input
                         type="number"
                         name="ExpectedPartnerAge"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.ExpectedPartnerAge || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
 
                     />
                 </div>
-                <div className="mb-4 flex items-center">
+                <div className="mb-4 lg:flex items-center">
                     <label
-                        className="w-2/12 text-sm font-bold text-gray-700 dark:text-gray-300"
+                        className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-gray-300"
                     >
                         Expected Partner Height:
 
                     </label>
                     <select
                         name="ExpectedPartnerHeight"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.ExpectedPartnerHeight || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
                     >
 
@@ -387,9 +397,9 @@ const EditBiodata = () => {
 
                     </select>
                 </div>
-                <div className="mb-4 flex items-center">
+                <div className="mb-4 lg:flex items-center">
                     <label
-                        className="w-2/12 text-sm font-bold text-gray-700 dark:text-gray-300"
+                        className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-gray-300"
                     >
                         Expected Partner Weight:
 
@@ -397,8 +407,8 @@ const EditBiodata = () => {
                     <select
                         type="number"
                         name="ExpectedPartnerWeight"
-
-                        className="w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        defaultValue={myBiodata?.ExpectedPartnerWeight || ""}
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
                         required
                     >
                         <option >
@@ -415,9 +425,9 @@ const EditBiodata = () => {
 
                 <button
                     type="submit"
-                    className="w-40 bg-red-800 text-white p-2 rounded"
+                    className="w-full my-6 lg:w-64 bg-red-800 text-white p-2 rounded"
                 >
-                    Save
+                    Save And Publish Now
                 </button>
 
             </form>
