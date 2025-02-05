@@ -1,4 +1,5 @@
 # [LifePair]
+<img src="https://i.ibb.co.com/1GR8SrkR/Screenshot-2025-02-05-124208.png" alt="Screenshot-2025-02-05-124208" border="0">
 ## 🖥️ Live Site URL
 You can visit the live site here: [Live Site URL](https://lifepair-client.web.app/)
 
@@ -70,10 +71,43 @@ Tech Stack: React, Chart.js, React Query, Tailwind CSS, DaisyUI
 - **Frontend**: ReactJS, Tailwind CSS, Flowbites  
 - **Backend**: Node.js, Express.js  
 - **Database**: MongoDB  
+- Follow these steps to set up the project locally
+ <br>
+1️⃣ Clone the repository:
 
+```sh
+https://github.com/meherun-nesa-marjan/StudyCircle-client.git
+```
+2️⃣ Navigate to the project directory:
+
+```sh
+cd lifepair
+```
+3️⃣ Install dependencies:
+
+```sh
+npm install
+```
+4️⃣ Create a .env file and add your Firebase configuration.<br>
+5️⃣ Start the development server:
+```sh
+npm run dev
+```
+
+## 📦 Dependencies
+```json
+"dependencies": {
+  "react": "^18.2.0",
+  "react-router-dom": "^6.14.1",
+  "firebase": "^9.6.1",
+  "tailwindcss": "^3.0.0",
+  "axios": "^1.3.0"
+}
+
+```
 
 ---
-
+Visit our live site and join the journey to turn ideas into reality: [LifePair](https://lifepair-client.web.app/) 
 
 
 
