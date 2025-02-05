@@ -79,7 +79,7 @@ Tech Stack: React, Chart.js, React Query, Tailwind CSS, DaisyUI
 1️⃣ Clone the repository:
 
 ```sh
-https://github.com/meherun-nesa-marjan/StudyCircle-client.git
+https://github.com/meherun-nesa-marjan/lifepair-client.git
 ```
 2️⃣ Navigate to the project directory:
 
