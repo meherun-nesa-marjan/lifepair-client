@@ -21,7 +21,7 @@ const MyBiodata = () => {
   if (isLoading) return <p>Loading biodata...</p>;
 
   if (!myBiodata || Object.keys(myBiodata).length === 0) {
-    return <div className="text-center my-20 text-2xl"><p>Create your biodata to see here.</p></div>;
+    return <div className="text-center my-20 min-h-screen dark:bg-gray-900 dark:text-white text-2xl"><p>Create your biodata to see here.</p></div>;
   }
 
   const handlePremium = () => {
@@ -62,7 +62,7 @@ const MyBiodata = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto my-8 p-6 bg-white shadow-lg rounded-lg">
+    <div className="max-w-4xl mx-auto my-8 p-6 dark:bg-gray-900 dark:text-white bg-white shadow-lg rounded-lg">
       <div className="flex items-center mt-6 space-x-4">
         <img
           src={myBiodata.ProfileImage}

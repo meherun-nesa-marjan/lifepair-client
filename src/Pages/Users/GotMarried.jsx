@@ -49,7 +49,7 @@ const GotMarried = () => {
     };
 
     return (
-        <div className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+        <div className="max-w-3xl mx-auto mt-10 p-6 bg-white min-h-screen dark:bg-gray-900 dark:text-white shadow-lg rounded-lg">
             <h1 className="text-2xl font-bold mb-4">Got Married? Share Your Success Story!</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -62,7 +62,7 @@ const GotMarried = () => {
                         name="selfBiodataId"
                         value={formData.selfBiodataId}
                         onChange={handleChange}
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full dark:bg-gray-900 dark:text-white"
                         required
                     />
                 </div>
@@ -76,7 +76,7 @@ const GotMarried = () => {
                         name="partnerBiodataId"
                         value={formData.partnerBiodataId}
                         onChange={handleChange}
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full dark:bg-gray-900 dark:text-white"
                         required
                     />
                 </div>
@@ -90,7 +90,7 @@ const GotMarried = () => {
                         name="coupleImageLink"
                         value={formData.coupleImageLink}
                         onChange={handleChange}
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full dark:bg-gray-900 dark:text-white"
                         required
                     />
                 </div>
@@ -103,7 +103,7 @@ const GotMarried = () => {
                         name="successStoryReview"
                         value={formData.successStoryReview}
                         onChange={handleChange}
-                        className="textarea textarea-bordered w-full"
+                        className="textarea textarea-bordered w-full dark:bg-gray-900 dark:text-white"
                         rows="4"
                         required
                     ></textarea>
@@ -118,7 +118,7 @@ const GotMarried = () => {
                         name="marriageDate"
                         value={formData.marriageDate}
                         onChange={handleChange}
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full dark:bg-gray-900 dark:text-white"
                         required
                     />
                 </div>

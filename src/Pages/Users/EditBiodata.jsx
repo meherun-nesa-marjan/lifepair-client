@@ -75,7 +75,7 @@ const EditBiodata = () => {
                         type="text"
                         name="Name"
                         defaultValue={myBiodata?.Name || ""}
-                        className="lg:w-2/3 w-full px-3 py-2 border rounded-md focus:outline-none"
+                        className="lg:w-2/3 w-full px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                         required
                     />
                 </div>
@@ -87,7 +87,7 @@ const EditBiodata = () => {
                         type="text"
                         name="FathersName"
                         defaultValue={myBiodata?.FathersName || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border dark:bg-gray-900 dark:text-white rounded-md focus:outline-none"
                         required
                     />
                 </div>
@@ -99,20 +99,20 @@ const EditBiodata = () => {
                         type="text"
                         name="MothersName"
                         defaultValue={myBiodata?.MothersName || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 dark:bg-gray-900 dark:text-white border rounded-md focus:outline-none"
                         required
                     />
                 </div>
 
                 {/* Profile Image */}
                 <div className="mb-4 lg:flex items-center">
-                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white">Profile Image:</label>
+                    <label className="w-full  lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white">Profile Image:</label>
                     <input
                         type="url"
                         name="ProfileImage"
                         defaultValue={myBiodata?.ProfileImage || ""}
 
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 dark:bg-gray-900 dark:text-white border rounded-md focus:outline-none"
                         required
                     />
                 </div>
@@ -124,7 +124,7 @@ const EditBiodata = () => {
                         type="email"
                         name="ContactEmail"
                         value={user.email}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                         readOnly
                     />
                 </div>
@@ -136,7 +136,7 @@ const EditBiodata = () => {
                         type="text"
                         name="MobileNumber"
                         defaultValue={myBiodata?.MobileNumber || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                         required
                     />
                 </div>
@@ -148,7 +148,7 @@ const EditBiodata = () => {
                         type="number"
                         name="Age"
                         defaultValue={myBiodata?.Age || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                         required
                     />
                 </div>
@@ -159,7 +159,7 @@ const EditBiodata = () => {
                     <select
                         name="BiodataType"
                         defaultValue={myBiodata?.BiodataType || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                         required
                     >
                         <option value="">Select</option>
@@ -175,7 +175,7 @@ const EditBiodata = () => {
                         type="date"
                         name="DateOfBirth"
                         defaultValue={myBiodata?.DateOfBirth || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                     />
                 </div>
 
@@ -185,7 +185,7 @@ const EditBiodata = () => {
                     <select
                         name="Height"
                         defaultValue={myBiodata?.Height || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                         required
                     >
                         <option value="">Select</option>
@@ -230,7 +230,7 @@ const EditBiodata = () => {
                     <select
                         name="Race"
                         defaultValue={myBiodata?.Race || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                         required
                     >
                         <option value="">
@@ -253,7 +253,7 @@ const EditBiodata = () => {
                     <select
                         name="Occupation"
                         defaultValue={myBiodata?.Occupation || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                         required
                     >
                         <option value="">
@@ -278,7 +278,7 @@ const EditBiodata = () => {
                         type="text"
                         name="PermanentDivision"
                         defaultValue={myBiodata?.PermanentDivision || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                     >
                         <option value="">Select Division</option>
                         <option value="Dhaka">Dhaka</option>
@@ -297,7 +297,7 @@ const EditBiodata = () => {
                         name="PresentDivision"
                         defaultValue={myBiodata?.PresentDivision || ""}
 
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                     >
                         <option value="">Select Division</option>
                         <option value="Dhaka">Dhaka</option>
@@ -320,7 +320,7 @@ const EditBiodata = () => {
                         type="number"
                         name="Weight"
                         defaultValue={myBiodata?.Weight || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                         required
                     >
                         <option >
@@ -345,7 +345,7 @@ const EditBiodata = () => {
                         type="number"
                         name="ExpectedPartnerAge"
                         defaultValue={myBiodata?.ExpectedPartnerAge || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
 
                     />
                 </div>
@@ -359,7 +359,7 @@ const EditBiodata = () => {
                     <select
                         name="ExpectedPartnerHeight"
                         defaultValue={myBiodata?.ExpectedPartnerHeight || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                         required
                     >
 
@@ -408,7 +408,7 @@ const EditBiodata = () => {
                         type="number"
                         name="ExpectedPartnerWeight"
                         defaultValue={myBiodata?.ExpectedPartnerWeight || ""}
-                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md focus:outline-none"
+                        className="w-full lg:w-2/3 px-3 py-2 border rounded-md dark:bg-gray-900 dark:text-white focus:outline-none"
                         required
                     >
                         <option >
