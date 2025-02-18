@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
-
+import { UseTheme } from '../Hooks/UseTheme';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { user } = useContext(AuthContext);
+  const { changeTheme, mode } = UseTheme();
 
   const navLinks = [
     { name: "Home", path: "/" },
