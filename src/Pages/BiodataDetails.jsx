@@ -58,7 +58,7 @@ const BiodataDetails = () => {
     return (
         <div className="pt-24 mx-auto w-11/12">
             {/* Biodata Details */}
-            <div className="bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
+            <div className="bg-white dark:bg-gray-900 dark:text-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
                 <img
                     className="object-cover w-full rounded-t-lg h-fit"
                     src={biodata.ProfileImage}
@@ -66,7 +66,7 @@ const BiodataDetails = () => {
                 />
                 <div className="p-4">
 
-                    <div className=" mx-auto my-8 p-6 bg-white shadow-lg rounded-lg">
+                    <div className=" mx-auto my-8 p-6 bg-white dark:bg-gray-900 dark:text-white shadow-lg rounded-lg">
 
                         <div className="mt-6">
                             <h3 className="text-3xl font-semibold">{biodata.Name}</h3>
@@ -147,7 +147,7 @@ const BiodataDetails = () => {
                                 </p>
                             </div>
                             ) : (
-                                <p className="text-gray-500">
+                                <p className="text-gray-500 dark:bg-gray-900 dark:text-white">
                                     Contact information is available for premium members only.
                                     <Link
                                     to={`/CheckoutPage/${biodata.BiodataId}`}
@@ -180,7 +180,7 @@ const BiodataDetails = () => {
                     {similarBiodatas.map((similar) => (
                         <div
                             key={similar.BiodataId}
-                            className="bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100"
+                            className="bg-white border dark:bg-gray-900 dark:text-white border-gray-200 rounded-lg shadow-md hover:bg-gray-100"
                         >
                             <img
                                 className="object-cover w-full rounded-t-lg h-64"

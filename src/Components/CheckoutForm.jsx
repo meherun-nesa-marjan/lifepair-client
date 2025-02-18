@@ -97,7 +97,7 @@ const CheckoutForm = () => {
             <form onSubmit={handleSubmit}>
                 <div className="">
                     <div className="mb-4 flex items-center">
-                        <label className="text-sm w-20 font-bold text-gray-700">Email:</label>
+                        <label className="text-sm w-20 font-bold text-gray-700 dark:bg-gray-900 dark:text-white">Email:</label>
                         <input
                             type="email"
                             name="ContactEmail"
@@ -107,7 +107,7 @@ const CheckoutForm = () => {
                         />
                     </div>
                     <div className="mb-4 flex items-center">
-                        <label className="text-sm w-20 font-bold text-gray-700">Bioata Id:</label>
+                        <label className="text-sm w-20 font-bold text-gray-700 dark:bg-gray-900 dark:text-white">Bioata Id:</label>
                         <input
                             type="text"
                             name="ContactEmail"

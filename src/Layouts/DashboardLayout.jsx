@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 const DashboardLayout = () => {
     const [isAdmin ] = UseAdmin();
     return (
-        <div className='md:flex md:space-x-10'>
+        <div className='md:flex md:space-x-10 dark:bg-gray-900 dark:text-white'>
            <div className="md:w-72  w-0">
             {
                 isAdmin ?

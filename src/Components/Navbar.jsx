@@ -43,7 +43,7 @@ const Navbar = () => {
 
           {/* Get Started & Menu Button */}
           <div className="flex md:order-2 space-x-3">
-            <button onClick={changeTheme} aria-label="Toggle Theme" className="btn btn-ghost dark:bg-gray-900 dark:text-white">
+            <button onClick={changeTheme} aria-label="Toggle Theme" className="btn btn-ghost  dark:text-white">
               {mode === "light" ? <IoSunny /> : <IoMoon />}
             </button>
             {user ? (

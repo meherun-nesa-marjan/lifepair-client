@@ -31,7 +31,7 @@ const Biodatas = () => {
         <div className="pt-24 mx-auto w-11/12">
             {/* Filter Section */}
             <div className="lg:flex">
-                <div className="lg:w-1/4 w-full p-4 bg-gray-100 rounded-lg shadow-sm">
+                <div className="lg:w-1/4 w-full p-4 bg-gray-100 dark:bg-gray-900 dark:text-white rounded-lg shadow-sm">
                     <h2 className="text-xl font-semibold">Filter</h2>
                     <div className="mt-4">
                         <label className="block">Age Range: {minAge} - {maxAge}</label>
@@ -48,7 +48,7 @@ const Biodatas = () => {
                         <label className="block">Gender</label>
                         <select
                             onChange={(e) => setGender(e.target.value)}
-                            className="w-full p-2 border rounded">
+                            className="w-full p-2 border rounded dark:bg-gray-900 dark:text-white">
                             <option value="">All</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -58,7 +58,7 @@ const Biodatas = () => {
                         <label className="block">Permanent Division</label>
                         <select
                             onChange={(e) => setDivision(e.target.value)}
-                            className="w-full p-2 border rounded">
+                            className="w-full p-2 border rounded dark:bg-gray-900 dark:text-white">
                             <option value="">Select Division</option>
                             <option value="Dhaka">Dhaka</option>
                             <option value="Chattagram">Chattagram</option>
@@ -74,7 +74,7 @@ const Biodatas = () => {
                 {/* Biodata Display Section */}
                 <div className="lg:w-3/4 w-full p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {biodatas.map((biodata) => (
-                        <div key={biodata.BiodataId} className="bg-white border rounded-lg shadow-md hover:shadow-lg transform transition-all hover:scale-105">
+                        <div key={biodata.BiodataId} className="bg-white border dark:bg-gray-900 dark:text-white rounded-lg shadow-md hover:shadow-lg transform transition-all hover:scale-105">
                             <img
                                 className="object-cover w-full rounded-t-lg h-64"
                                 src={biodata.ProfileImage}
