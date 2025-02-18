@@ -56,12 +56,12 @@ const AdminSuccessStories = () => {
     }
 
     return (
-        <div className="max-w-7xl mx-auto px-4 py-6 rounded-lg shadow-lg">
+        <div className="max-w-7xl min-h-screen mx-auto px-4 py-6 rounded-lg shadow-lg">
             <h1 className="text-3xl font-bold text-center mb-6">
                 Success Stories: {successStories.length}
             </h1>
 
-            <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
+            <table className="min-w-full bg-white dark:bg-slate-900 dark:text-slate-300 border border-gray-300 rounded-lg shadow-md">
                 <thead>
                     <tr>
                         <th className="px-4 py-2 text-left border-b">Male Biodata Id</th>

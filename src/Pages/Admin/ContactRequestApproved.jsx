@@ -41,14 +41,14 @@ const ContactRequestApproved = () => {
       };
 
     return (
-        <div className="p-6">
+        <div className="p-6 min-h-screen">
             <h1 className="text-2xl font-bold mb-4">Contact Requests {contactRequests.length}</h1>
 
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-center py-4 text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr className="bg-gray-200">
+                        <tr className="bg-gray-200 dark:text-slate-600">
                             <th className="px-4 py-3">Name</th>
                             <th className="px-4 py-3">Biodata ID</th>
                             <th className="px-4 py-3">Email</th>

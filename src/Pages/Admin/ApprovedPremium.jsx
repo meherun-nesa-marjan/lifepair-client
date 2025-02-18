@@ -53,7 +53,7 @@ const handleMakePremium = (request) => {
      <div className="overflow-x-auto">
      <table className="table-auto w-full border-collapse border border-gray-300">
         <thead>
-          <tr className="bg-gray-200">
+          <tr className="bg-gray-200 dark:text-slate-600">
             <th className="border px-4 py-2">Name</th>
             <th className="border px-4 py-2">Email</th>
             <th className="border px-4 py-2">Biodata ID</th>
@@ -85,7 +85,7 @@ const handleMakePremium = (request) => {
      <div className="overflow-x-auto">
      <table className="table-auto w-full border-collapse border border-gray-300">
         <thead>
-          <tr className="bg-gray-200">
+          <tr className="bg-gray-200 dark:text-slate-600">
             <th className="border px-4 py-2">Name</th>
             <th className="border px-4 py-2">Email</th>
             <th className="border px-4 py-2">Biodata ID</th>

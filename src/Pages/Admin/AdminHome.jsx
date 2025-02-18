@@ -57,36 +57,36 @@ const AdminHome = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto mt-10 px-4 py-6 bg-gray-100 rounded-lg shadow-lg">
+        <div className="max-w-7xl dark:bg-gray-900 dark:text-white mx-auto mt-10 px-4 py-6 bg-gray-100 rounded-lg shadow-lg">
 
             <h1 className="text-3xl font-bold text-center mb-6">Admin Dashboard</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Total Biodata Count */}
-                <div className="bg-white shadow-lg rounded-lg p-6 text-center">
+                <div className="bg-white dark:bg-gray-900 dark:text-white shadow-lg rounded-lg p-6 text-center">
                     <h2 className="text-xl font-bold mb-2">Total Biodata</h2>
                     <p className="text-3xl">{totalBiodata}</p>
                 </div>
 
                 {/* Male Biodata Count */}
-                <div className="bg-white shadow-lg rounded-lg p-6 text-center">
+                <div className="bg-white dark:bg-gray-900 dark:text-white shadow-lg rounded-lg p-6 text-center">
                     <h2 className="text-xl font-bold mb-2">Male Biodata</h2>
                     <p className="text-3xl">{data.boysBiodata}</p>
                 </div>
 
                 {/* Female Biodata Count */}
-                <div className="bg-white shadow-lg rounded-lg p-6 text-center">
+                <div className="bg-white dark:bg-gray-900 dark:text-white shadow-lg rounded-lg p-6 text-center">
                     <h2 className="text-xl font-bold mb-2">Female Biodata</h2>
                     <p className="text-3xl">{data.girlsBiodata}</p>
                 </div>
 
                 {/* Premium Biodata Count */}
-                <div className="bg-white shadow-lg rounded-lg p-6 text-center">
+                <div className="bg-white dark:bg-gray-900 dark:text-white shadow-lg rounded-lg p-6 text-center">
                     <h2 className="text-xl font-bold mb-2">Premium Biodata</h2>
                     <p className="text-3xl">{data.premiumBiodata}</p>
                 </div>
 
                 {/* Total Revenue */}
-                <div className="bg-white shadow-lg rounded-lg p-6 text-center">
+                <div className="bg-white dark:bg-gray-900 dark:text-white shadow-lg rounded-lg p-6 text-center">
                     <h2 className="text-xl font-bold mb-2">Total Revenue</h2>
                     <p className="text-3xl">${data.totalrevenue}</p>
                 </div>

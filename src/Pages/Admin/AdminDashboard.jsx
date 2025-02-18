@@ -49,7 +49,7 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div className="text-white">
+        <div className="text-white dark:bg-gray-900 dark:text-white">
             {/* Hamburger Menu Button */}
             <button
                 onClick={toggleSidebar}

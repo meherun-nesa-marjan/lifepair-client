@@ -91,7 +91,7 @@ const ManageUsers = () => {
           <div className="overflow-x-auto">
           <table className="table-auto w-fit border-collapse border border-gray-300">
             <thead>
-              <tr className="bg-[#f3f0ee]">
+              <tr className="bg-[#f3f0ee] dark:text-slate-800">
                 <th className="border border-gray-300 px-4 py-2">#</th>
                 <th className="border border-gray-300 px-4 py-2">Name</th>
                 <th className="border border-gray-300 px-4 py-2">Email</th>
@@ -102,7 +102,7 @@ const ManageUsers = () => {
             </thead>
             <tbody>
               {users.map((user, index) => (
-                <tr key={user._id} className="hover:bg-gray-100">
+                <tr key={user._id} className="hover:bg-gray-100 dark:hover:bg-gray-600">
                   <td className="border border-gray-300 px-4 py-2 text-center">
                     {index + 1}
                   </td>
@@ -116,7 +116,7 @@ const ManageUsers = () => {
                     ) : (
                       <button
                         onClick={() => handleMakeAdmin(user)}
-                        className="text-red-700 flex items-center font-bold rounded hover:bg-gray-100"
+                        className="text-red-700 flex items-center font-bold rounded dark:hover:bg-gray-600 hover:bg-gray-100"
                       >
                         <HiUsers className="mr-1" />
                         Make Admin
