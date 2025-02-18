@@ -2,7 +2,7 @@ import { CiFacebook, CiInstagram, CiTwitter } from "react-icons/ci";
 
 const Contact = () => {
     return (
-        <div className="bg-pink-50 text-white min-h-screen">
+        <div className="bg-pink-50 dark:bg-gray-900 dark:text-white text-white min-h-screen">
         <div className="max-w-7xl mx-auto px-6 py-20">
             <h1 className="text-5xl font-extrabold text-center text-pink-600 mb-8">
                 Contact Us
@@ -13,7 +13,7 @@ const Contact = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
                 {/* Contact Form */}
-                <div className="bg-white text-gray-800 rounded-lg p-6 shadow-lg">
+                <div className="bg-white dark:bg-gray-900 dark:text-white text-gray-800 rounded-lg p-6 shadow-lg">
                     <h2 className="text-3xl font-semibold mb-4 text-red-700">
                         Send Us a Message
                     </h2>
@@ -61,7 +61,7 @@ const Contact = () => {
                 </div>
 
                 {/* Contact Details */}
-                <div className="bg-white text-gray-800 rounded-lg p-6 shadow-lg">
+                <div className="bg-white  dark:bg-gray-900 dark:text-white text-gray-800 rounded-lg p-6 shadow-lg">
                     <h2 className="text-3xl font-semibold mb-4 text-red-700">
                         Reach Out to Us
                     </h2>

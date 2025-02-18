@@ -63,14 +63,14 @@ const EditBiodata = () => {
 
 
     return (
-        <div className="py-10 w-full mx-auto">
+        <div className="py-10  dark:text-white w-full mx-auto">
             <div className="text-center mx-auto">
                 <h1 className="text-2xl font-semibold mb-4">Edit Biodata</h1>
             </div>
             <form className='p-8' onSubmit={handleSave}>
                 {/* Name */}
                 <div className="mb-4 lg:flex items-center">
-                    <label className="lg:w-3/12 w-full text-sm font-bold text-gray-700">Your Name:</label>
+                    <label className="lg:w-3/12 w-full text-sm font-bold text-gray-700 dark:text-white">Your Name:</label>
                     <input
                         type="text"
                         name="Name"
@@ -82,7 +82,7 @@ const EditBiodata = () => {
 
                 {/* Father's Name */}
                 <div className="mb-4 lg:flex items-center">
-                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Father's Name:</label>
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white">Father's Name:</label>
                     <input
                         type="text"
                         name="FathersName"
@@ -94,7 +94,7 @@ const EditBiodata = () => {
 
                 {/* Mother's Name */}
                 <div className="mb-4 lg:flex items-center">
-                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Mother's Name:</label>
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white">Mother's Name:</label>
                     <input
                         type="text"
                         name="MothersName"
@@ -106,7 +106,7 @@ const EditBiodata = () => {
 
                 {/* Profile Image */}
                 <div className="mb-4 lg:flex items-center">
-                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Profile Image:</label>
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white">Profile Image:</label>
                     <input
                         type="url"
                         name="ProfileImage"
@@ -119,7 +119,7 @@ const EditBiodata = () => {
 
                 {/* Contact Email (Read-only) */}
                 <div className="mb-4 lg:flex items-center">
-                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Contact Email:</label>
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white">Contact Email:</label>
                     <input
                         type="email"
                         name="ContactEmail"
@@ -131,7 +131,7 @@ const EditBiodata = () => {
 
                 {/* Mobile Number */}
                 <div className="mb-4 lg:flex items-center">
-                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Mobile Number:</label>
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white">Mobile Number:</label>
                     <input
                         type="text"
                         name="MobileNumber"
@@ -143,7 +143,7 @@ const EditBiodata = () => {
 
                 {/* Age */}
                 <div className="mb-4 lg:flex items-center">
-                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Age:</label>
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white">Age:</label>
                     <input
                         type="number"
                         name="Age"
@@ -155,7 +155,7 @@ const EditBiodata = () => {
 
                 {/* Biodata Type */}
                 <div className="mb-4 lg:flex items-center">
-                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Biodata Type:</label>
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white">Biodata Type:</label>
                     <select
                         name="BiodataType"
                         defaultValue={myBiodata?.BiodataType || ""}
@@ -170,7 +170,7 @@ const EditBiodata = () => {
 
                 {/* Date of Birth */}
                 <div className="mb-4 lg:flex items-center">
-                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Date of Birth:</label>
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white">Date of Birth:</label>
                     <input
                         type="date"
                         name="DateOfBirth"
@@ -181,7 +181,7 @@ const EditBiodata = () => {
 
                 {/* Height */}
                 <div className="mb-4 lg:flex items-center">
-                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700">Height:</label>
+                    <label className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white">Height:</label>
                     <select
                         name="Height"
                         defaultValue={myBiodata?.Height || ""}
@@ -223,7 +223,7 @@ const EditBiodata = () => {
                 </div>
                 <div className='mb-4 lg:flex items-center'>
                     <label
-                        className="w-full lg:w-3/12 font-bold text-sm  text-gray-700 dark:text-gray-300"
+                        className="w-full lg:w-3/12 font-bold text-sm  text-gray-700 dark:text-white"
                     >
                         Race :
                     </label>
@@ -246,7 +246,7 @@ const EditBiodata = () => {
                 <div className="mb-4 lg:flex items-center">
 
                     <label
-                        className="w-full lg:w-3/12 font-bold text-sm  text-gray-700 dark:text-gray-300"
+                        className="w-full lg:w-3/12 font-bold text-sm  text-gray-700 dark:text-white"
                     >
                         Occupation :
                     </label>
@@ -273,7 +273,7 @@ const EditBiodata = () => {
 
                 </div>
                 <div className="mb-4 lg:flex items-center">
-                    <label className="w-full lg:w-3/12 font-bold text-sm  text-gray-700 dark:text-gray-300">Permanent Division</label>
+                    <label className="w-full lg:w-3/12 font-bold text-sm  text-gray-700 dark:text-white">Permanent Division</label>
                     <select
                         type="text"
                         name="PermanentDivision"
@@ -291,7 +291,7 @@ const EditBiodata = () => {
                     </select>
                 </div>
                 <div className="mb-4 lg:flex items-center">
-                    <label className="w-full lg:w-3/12 font-bold text-sm  text-gray-700 dark:text-gray-300">Present Division</label>
+                    <label className="w-full lg:w-3/12 font-bold text-sm  text-gray-700 dark:text-white">Present Division</label>
                     <select
                         type="text"
                         name="PresentDivision"
@@ -312,7 +312,7 @@ const EditBiodata = () => {
 
                 <div className="mb-4 lg:flex items-center">
                     <label
-                        className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-gray-300"
+                        className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white"
                     >
                         Weight (kg) :
                     </label>
@@ -336,7 +336,7 @@ const EditBiodata = () => {
                 </div>
                 <div className="mb-4 lg:flex items-center">
                     <label
-                        className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-gray-300"
+                        className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white"
                     >
                         Expected Partner Age :
 
@@ -351,7 +351,7 @@ const EditBiodata = () => {
                 </div>
                 <div className="mb-4 lg:flex items-center">
                     <label
-                        className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-gray-300"
+                        className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white"
                     >
                         Expected Partner Height:
 
@@ -399,7 +399,7 @@ const EditBiodata = () => {
                 </div>
                 <div className="mb-4 lg:flex items-center">
                     <label
-                        className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-gray-300"
+                        className="w-full lg:w-3/12 text-sm font-bold text-gray-700 dark:text-white "
                     >
                         Expected Partner Weight:
 

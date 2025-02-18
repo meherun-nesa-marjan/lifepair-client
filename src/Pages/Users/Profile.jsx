@@ -9,7 +9,7 @@ const Profile = () => {
         <div>
             <div className="p-6">
                 
-                <div className="max-w-4xl mx-auto my-8 p-6 bg-white shadow-lg rounded-lg">
+                <div className="max-w-4xl min-h-screen mx-auto my-8 p-6 bg-white dark:bg-gray-900 dark:text-white shadow-lg rounded-lg">
                 <h2 className="text-3xl font-bold text-red-700">Your Profile Info</h2>
                 <div className="flex items-center space-x-4 p-4">
                         <img
