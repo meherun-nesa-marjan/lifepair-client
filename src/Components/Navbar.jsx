@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import { UseTheme } from '../Hooks/UseTheme';
+import { IoMoon, IoSunny } from "react-icons/io5";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -42,9 +43,12 @@ const Navbar = () => {
 
           {/* Get Started & Menu Button */}
           <div className="flex md:order-2 space-x-3">
+            <button onClick={changeTheme} aria-label="Toggle Theme" className="btn btn-ghost dark:bg-gray-900 dark:text-white">
+              {mode === "light" ? <IoSunny /> : <IoMoon />}
+            </button>
             {user ? (
               <div className="flex space-x-2">
-               <Link to={'/Dashboard/ProfilePage'}> <img
+                <Link to={'/Dashboard/ProfilePage'}> <img
                   src={user?.photoURL || '/default-avatar.png'}
                   alt="User Avatar"
                   className="w-10 h-10 rounded-full"

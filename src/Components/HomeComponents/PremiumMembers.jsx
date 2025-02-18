@@ -22,7 +22,7 @@ const PremiumMembers = () => {
   }
 
   return (
-    <div className="my-12 w-11/12 mx-auto">
+    <div className="my-12 w-11/12 mx-auto dark:bg-gray-900 dark:text-white">
       <h2 className="text-3xl font-bold text-center mb-8">Our Premium Members</h2>
       
       {/* Dropdown for sorting */}
@@ -30,7 +30,7 @@ const PremiumMembers = () => {
         <select
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
-          className="p-2 border border-gray-300 rounded"
+          className="p-2 border dark:bg-gray-900 dark:text-white border-gray-300 rounded"
         >
           <option value="asc">Sort by Age: Ascending</option>
           <option value="desc">Sort by Age: Descending</option>
@@ -42,7 +42,7 @@ const PremiumMembers = () => {
         {sortedMembers.map((member) => (
           <div
             key={member.BiodataId}
-            className="bg-white border border-gray-200 rounded-lg shadow-md p-4"
+            className="bg-white border dark:bg-gray-900 dark:text-white border-gray-200 rounded-lg shadow-md p-4"
           >
             <img
               className="object-cover w-full h-48 rounded-lg mb-4"

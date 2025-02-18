@@ -35,11 +35,11 @@ const HowItWorks = () => {
           {steps.map((step) => (
             <div
               key={step.id}
-              className="bg-white border border-gray-200 rounded-lg shadow-md p-6 text-center"
+              className="bg-white border dark:bg-gray-900 dark:text-white border-gray-200 rounded-lg shadow-md p-6 text-center"
             >
               <div className="text-4xl mb-4">{step.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-              <p className="text-gray-600">{step.description}</p>
+              <p className="text-gray-600 dark:bg-gray-900 dark:text-white">{step.description}</p>
             </div>
           ))}
         </div>
