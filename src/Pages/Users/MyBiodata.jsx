@@ -2,10 +2,14 @@ import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProvider";
+import { useContext } from "react";
 
 const MyBiodata = () => {
   const { email } = useParams();
   const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+  
   const { data: myBiodata = {}, isLoading, refetch } = useQuery({
     queryKey: ["myBiodata", email],
     queryFn: async () => {
@@ -66,9 +70,9 @@ const MyBiodata = () => {
           className="w-32 h-32 rounded-full border"
         />
         <div>
-          <h1 className="text-2xl font-bold">{myBiodata.Name}</h1>
-          <p className="text-gray-500">{myBiodata.BiodataType}</p>
-          <p className="text-gray-500">Biodata ID: {myBiodata.BiodataId}</p>
+          <h1 className="text-2xl font-bold">{myBiodata.Name || user.displayName}</h1>
+          <p className="text-gray-500">{myBiodata.BiodataType || 'N/A'}</p>
+          <p className="text-gray-500">Biodata ID: {myBiodata.BiodataId || 'N/A'}</p>
         </div>
       </div>
 
@@ -78,22 +82,22 @@ const MyBiodata = () => {
         </h2>
         <div className="grid grid-cols-2 gap-4">
           <p>
-            <strong>Date of Birth:</strong> {myBiodata.DateOfBirth}
+            <strong>Date of Birth:</strong> {myBiodata.DateOfBirth || 'N/A'}
           </p>
           <p>
-            <strong>Age:</strong> {myBiodata.Age} years
+            <strong>Age:</strong> {myBiodata.Age|| 'N/A'} years
           </p>
           <p>
-            <strong>Height:</strong> {myBiodata.Height} cm
+            <strong>Height:</strong> {myBiodata.Height|| 'N/A'} cm
           </p>
           <p>
-            <strong>Weight:</strong> {myBiodata.Weight} kg
+            <strong>Weight:</strong> {myBiodata.Weight|| 'N/A'} kg
           </p>
           <p>
-            <strong>Occupation:</strong> {myBiodata.Occupation}
+            <strong>Occupation:</strong> {myBiodata.Occupation|| 'N/A'}
           </p>
           <p>
-            <strong>Race:</strong> {myBiodata.Race}
+            <strong>Race:</strong> {myBiodata.Race|| 'N/A'}
           </p>
         </div>
       </div>
@@ -104,13 +108,13 @@ const MyBiodata = () => {
         </h2>
         <div className="grid grid-cols-2 gap-4">
           <p>
-            <strong>Father's Name:</strong> {myBiodata.FathersName}
+            <strong>Father's Name:</strong> {myBiodata.FathersName|| 'N/A'}
           </p>
           <p>
-            <strong>Mother's Name:</strong> {myBiodata.MothersName}
+            <strong>Mother's Name:</strong> {myBiodata.MothersName|| 'N/A'}
           </p>
           <p>
-            <strong>Permanent Division:</strong> {myBiodata.PermanentDivision}
+            <strong>Permanent Division:</strong> {myBiodata.PermanentDivision|| 'N/A'}
           </p>
           <p>
             <strong>Present Division:</strong> {myBiodata.PresentDivision}
@@ -130,7 +134,7 @@ const MyBiodata = () => {
             <strong>Expected Partner Height:</strong> {myBiodata.ExpectedPartnerHeight} cm
           </p>
           <p>
-            <strong>Expected Partner Weight:</strong> {myBiodata.ExpectedPartnerWeight} kg
+            <strong>Expected Partner Weight:</strong> {myBiodata.ExpectedPartnerWeight|| 'N/A'} kg
           </p>
         </div>
       </div>
@@ -141,7 +145,7 @@ const MyBiodata = () => {
         </h2>
         <div className="grid grid-cols-2 gap-4">
           <p>
-            <strong>Email:</strong> {myBiodata.ContactEmail}
+            <strong>Email:</strong> {myBiodata.ContactEmail|| user.email}
           </p>
           <p>
             <strong>Mobile:</strong> {myBiodata.MobileNumber}

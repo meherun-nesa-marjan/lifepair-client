@@ -27,9 +27,8 @@ const Navbar = () => {
   return (
     <div>
       <nav
-        className={`fixed top-0 z-50 w-full transition-shadow duration-300 ${
-          isScrolled ? "shadow-md bg-white backdrop-blur-md bg-opacity-90 dark:bg-gray-900" : "bg-transparent"
-        }`}
+        className={`fixed top-0 z-50 w-full transition-shadow duration-300 ${isScrolled ? "shadow-md bg-white backdrop-blur-md bg-opacity-90 dark:bg-gray-900" : "bg-transparent"
+          }`}
       >
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           {/* Logo */}
@@ -43,14 +42,21 @@ const Navbar = () => {
           {/* Get Started & Menu Button */}
           <div className="flex md:order-2 space-x-3">
             {user ? (
-              <Link to="/Dashboard">
-                <button
-                  type="button"
-                  className="text-white bg-[#AA0000] hover:bg-red-700 focus:ring-4 font-medium rounded-lg text-sm px-4 py-2 dark:bg-[#AA0000] dark:hover:bg-red-700"
-                >
-                  Dashboard
-                </button>
-              </Link>
+              <div className="flex space-x-2">
+               <Link to={'/Dashboard/ProfilePage'}> <img
+                  src={user?.photoURL || '/default-avatar.png'}
+                  alt="User Avatar"
+                  className="w-10 h-10 rounded-full"
+                /></Link>
+                <Link to="/Dashboard">
+                  <button
+                    type="button"
+                    className="text-white bg-[#AA0000] hover:bg-red-700 focus:ring-4 font-medium rounded-lg text-sm px-4 py-2 dark:bg-[#AA0000] dark:hover:bg-red-700"
+                  >
+                    Dashboard
+                  </button>
+                </Link>
+              </div>
             ) : (
               <Link to="/Login">
                 <button
@@ -88,11 +94,10 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div
-            className={`md:flex md:items-center md:w-auto md:order-1 ${
-              isMenuOpen
-                ? "block z-[90] bg-gray-100 md:bg-transparent absolute top-full right-0 w-48 md:static"
-                : "hidden"
-            }`}
+            className={`md:flex md:items-center md:w-auto md:order-1 ${isMenuOpen
+              ? "block z-[90] bg-gray-100 md:bg-transparent absolute top-full right-0 w-48 md:static"
+              : "hidden"
+              }`}
             id="navbar-cta"
           >
             <ul className="flex flex-col text-xl p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0">
@@ -101,10 +106,9 @@ const Navbar = () => {
                   <NavLink
                     to={link.path}
                     className={({ isActive }) =>
-                      `block py-2 px-3 md:p-0 rounded ${
-                        isActive
-                          ? "text-red-900 font-bold"
-                          : "text-[#AA0000] dark:text-white dark:hover:bg-gray-700"
+                      `block py-2 px-3 md:p-0 rounded ${isActive
+                        ? "text-red-900 font-bold"
+                        : "text-[#AA0000] dark:text-white dark:hover:bg-gray-700"
                       }`
                     }
                   >

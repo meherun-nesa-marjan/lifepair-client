@@ -23,6 +23,7 @@ import AdminRoutes from './AdminRoutes';
 import Dashboad from '../Components/Dashboad';
 import Contact from '../Pages/Contact';
 import NotFound from '../Pages/NotFound';
+import Profile from '../Pages/Users/Profile';
 
 const Routes = createBrowserRouter([
   {
@@ -118,6 +119,11 @@ const Routes = createBrowserRouter([
       {
         path: 'Edit',
         element: <PrivateRoutes><EditBiodata /></PrivateRoutes>
+
+      },
+      {
+        path: 'ProfilePage',
+        element: <PrivateRoutes><Profile /></PrivateRoutes>
 
       },
       {

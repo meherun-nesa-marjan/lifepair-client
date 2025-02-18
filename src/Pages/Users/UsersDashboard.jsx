@@ -5,6 +5,7 @@ import { MdEditDocument, MdFavorite, MdOutlineRemoveRedEye} from 'react-icons/md
 import { RiContactsFill } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
+import { FaPersonRifle } from 'react-icons/fa6';
 
 const UsersDashboard = () => {
     const { user, signOutUser } = useContext(AuthContext);
@@ -75,6 +76,7 @@ const UsersDashboard = () => {
                         <span className="dark:text-white">{user?.displayName || 'User Name'}</span>
                     </div>
                     <ul className="space-y-2 font-medium">
+                        
                         <li>
                             <Link 
                                 to={'/'} 
@@ -83,6 +85,16 @@ const UsersDashboard = () => {
                             >
                                 <IoIosHome />
                                 <span className="ms-3">Back to Home</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link 
+                                to={'/Dashboard/ProfilePage'} 
+                                onClick={() => closeSidebarAndNavigate('/')}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group"
+                            >
+                                <FaPersonRifle />
+                                <span className="ms-3">Profile</span>
                             </Link>
                         </li>
                         <li>

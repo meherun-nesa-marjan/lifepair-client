@@ -5,6 +5,7 @@ import { MdEditDocument, MdViewCarousel } from 'react-icons/md';
 import { RiContactsFill } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
+import { FaPersonRifle } from 'react-icons/fa6';
 
 const AdminDashboard = () => {
     const { user, signOutUser } = useContext(AuthContext);
@@ -81,48 +82,58 @@ const AdminDashboard = () => {
                     <ul className="space-y-2 font-medium">
                         <li>
                             <Link to={'/Dashboard/AdminHome'}
-                             onClick={() => closeSidebarAndNavigate('/Dashboard/AdminHome')}
-                            className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                                onClick={() => closeSidebarAndNavigate('/Dashboard/AdminHome')}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                                 <IoIosHome />
                                 <span className="ms-3">Admin Dashboard</span>
                             </Link>
                         </li>
                         <li>
+                            <Link
+                                to={'/Dashboard/ProfilePage'}
+                                onClick={() => closeSidebarAndNavigate('/')}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group"
+                            >
+                                <FaPersonRifle />
+                                <span className="ms-3">Profile</span>
+                            </Link>
+                        </li>
+                        <li>
                             <Link to={'/Dashboard/ManageUsers'}
-                             onClick={() => closeSidebarAndNavigate('/Dashboard/ManageUsers')}
-                            className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                                onClick={() => closeSidebarAndNavigate('/Dashboard/ManageUsers')}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                                 <MdEditDocument />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Manage Users</span>
                             </Link>
                         </li>
                         <li>
                             <Link to={'/Dashboard/ApprovedPremium'}
-                             onClick={() => closeSidebarAndNavigate('/Dashboard/ApprovedPremium')}
-                            className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                                onClick={() => closeSidebarAndNavigate('/Dashboard/ApprovedPremium')}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                                 <MdViewCarousel />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Approved Premium</span>
                             </Link>
                         </li>
                         <li>
                             <Link to={'/Dashboard/ContactRequestApproved'}
-                             onClick={() => closeSidebarAndNavigate('/Dashboard/ContactRequestApproved')}
-                            className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                                onClick={() => closeSidebarAndNavigate('/Dashboard/ContactRequestApproved')}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                                 <RiContactsFill />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Approved Contact Request</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to={'/Dashboard/AdminSuccessStories'} 
-                             onClick={() => closeSidebarAndNavigate('/Dashboard/AdminSuccessStories')}
-                            className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                            <Link to={'/Dashboard/AdminSuccessStories'}
+                                onClick={() => closeSidebarAndNavigate('/Dashboard/AdminSuccessStories')}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                                 <RiContactsFill />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Success Stories</span>
                             </Link>
                         </li>
                         <li>
                             <Link to={'/'}
-                             onClick={() => closeSidebarAndNavigate('/')}
-                             className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
+                                onClick={() => closeSidebarAndNavigate('/')}
+                                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-red-400 dark:hover:bg-gray-700 group">
                                 <RiContactsFill />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Go Home</span>
                             </Link>
