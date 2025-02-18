@@ -12,7 +12,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Biodatas", path: "/Biodatas" },
-    { name: "About Us", path: "/About" },
+    { name: "Blog", path: "/Blogs" },
     { name: "Contact Us", path: "/Contact" },
   ];
 
@@ -113,7 +113,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `block py-2 px-3 md:p-0 rounded ${isActive
                         ? "text-red-900 font-bold"
-                        : "text-[#AA0000] dark:text-white dark:hover:bg-gray-700"
+                        : "text-[#AA0000] dark:text-white"
                       }`
                     }
                   >

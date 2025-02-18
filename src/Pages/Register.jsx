@@ -114,14 +114,14 @@ const Register = () => {
     
 
     return (
-        <div className=" bg-cover bg-center"
+        <div className="py-20 bg-cover bg-center "
             style={{ backgroundImage: `url(${bgImg})` }}>
-            <section className=" dark:bg-gray-900 py-3">
+            <section className="  py-3">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
-                    <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                    <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                                 Create an account
                             </h1>
                             <form onSubmit={handleRegistration} className="space-y-4 md:space-y-6" action="#">
@@ -136,23 +136,23 @@ const Register = () => {
                                 </button>
 
                                 <div className="inline-flex items-center justify-center w-full">
-                                    <hr className="w-full h-px bg-gray-200 border-0 dark:bg-gray-700" />
+                                    <hr className="w-full h-px bg-gray-200 border-0" />
                                     <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">or</span>
                                 </div>
                                 <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Name</label>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 ">Your Name</label>
                                     <input type="name" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your Name" required="" />
                                 </div>
                                 <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
                                     <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your Email" required="" />
                                 </div>
                                 <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo URL</label>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">Photo URL</label>
                                     <input type="url" name="photoURL" id="photoURL" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Photo URL" required="" />
                                 </div>
                                 <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
                                     <input
                                         type='password'
                                         id="password"

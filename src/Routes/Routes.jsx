@@ -3,7 +3,6 @@ import MainLayouts from '../Layouts/MainLayouts';
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
-import About from '../Pages/About';
 import Biodatas from '../Pages/Biodatas';
 import PrivateRoutes from './PrivateRoutes';
 import BiodataDetails from '../Pages/BiodataDetails';
@@ -24,6 +23,7 @@ import Dashboad from '../Components/Dashboad';
 import Contact from '../Pages/Contact';
 import NotFound from '../Pages/NotFound';
 import Profile from '../Pages/Users/Profile';
+import Blogs from '../Pages/Blogs';
 
 const Routes = createBrowserRouter([
   {
@@ -56,8 +56,8 @@ const Routes = createBrowserRouter([
       },
      
       {
-        path: '/About',
-        element: <About />
+        path: '/Blogs',
+        element: <Blogs />
 
       },
       {
