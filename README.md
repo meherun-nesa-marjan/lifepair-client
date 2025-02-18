@@ -9,7 +9,7 @@ You can visit the live site here: [Live Site URL](https://lifepair-client.web.ap
 ---
 
 ## 📧 Admin Access
-- **Admin Email**: lifepair@gmai.com
+- **Admin Email**: lifepair@gmail.com
 - **Admin Password**: Lifepair
 
 ---
