@@ -1,3 +1,4 @@
+import AboutUs from "../Components/AboutUs";
 import Bannar from "../Components/HomeComponents/Bannar";
 import HowItWorks from "../Components/HomeComponents/HowItWorks";
 import PremiumMembers from "../Components/HomeComponents/PremiumMembers";
@@ -8,6 +9,7 @@ const Home = () => {
     return (
         <div className="">
            <Bannar />
+           <AboutUs />
            <PremiumMembers />
            <HowItWorks />
            <SuccessCounter />

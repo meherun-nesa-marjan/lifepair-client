@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const About = () => {
     return (
-        <div className="bg-gradient-to-b from-[#B1E3D5] pt-24 to-[#F7FCFA] text-white min-h-screen">
+        <div className=" pt-24 text-white min-h-screen">
         <div className="max-w-7xl mx-auto px-6 py-12">
             <h1 className="text-5xl font-extrabold text-red-700 text-center mb-8">
                 About Us

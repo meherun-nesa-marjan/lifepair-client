@@ -2,12 +2,12 @@ import { CiFacebook, CiInstagram, CiTwitter } from "react-icons/ci";
 
 const Contact = () => {
     return (
-        <div className="bg-slate-300 text-white min-h-screen">
+        <div className="bg-pink-50 text-white min-h-screen">
         <div className="max-w-7xl mx-auto px-6 py-20">
-            <h1 className="text-5xl font-extrabold text-center mb-8">
+            <h1 className="text-5xl font-extrabold text-center text-pink-600 mb-8">
                 Contact Us
             </h1>
-            <p className="text-xl text-center mb-6 leading-relaxed">
+            <p className="text-xl text-pink-600 text-center mb-6 leading-relaxed">
                 Have questions, suggestions, or need support? We're here to help! 
                 Get in touch with us through any of the methods below.
             </p>
@@ -53,7 +53,7 @@ const Contact = () => {
                         </div>
                         <button
                             type="submit"
-                            className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg"
+                            className="w-full bg-red-700 hover:bg-red-600 text-white font-bold py-3 rounded-lg"
                         >
                             Submit
                         </button>

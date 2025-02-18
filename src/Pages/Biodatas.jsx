@@ -10,7 +10,7 @@ const Biodatas = () => {
     const [minAge, setMinAge] = useState(18);
     const [maxAge, setMaxAge] = useState(60);
     const [division, setDivision] = useState('');
-    const itemsPerPage = 20;
+    const itemsPerPage = 21;
     const { count } = useLoaderData();
     const numberOfPages = Math.ceil(count / itemsPerPage);
     const pages = [...Array(numberOfPages).keys()];
